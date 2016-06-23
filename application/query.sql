@@ -3,11 +3,11 @@ create table users (
 	name varchar(100) NOT NULL,
 	email varchar(320) unique NOT NULL,          
 	mobileno varchar(10) unique NOT NULL,
-	profilepic varchar(100) NOT NULL,
+	profilepic varchar(100),
 	passwd char(32) NOT NULL,
 	about text,
 	creation_time timestamp NOT NULL,
-	is_active boolean NOT NULL,
+	is_active boolean NOT NULL default 0,
 	hash_key char(32) NOT NULL,
 	primary key (user_id)
 );
