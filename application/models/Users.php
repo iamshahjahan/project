@@ -32,24 +32,30 @@
 
 		function check_hash_key($hash_key)
 		{
-			$statement = $this->conn_id->prepare("select user_id from users where hash_key = :hash_key");
+			$statement = $this->conn_id->prepare("select user_id,is_active from users where hash_key = :hash_key");
 			$statement->execute(array(':hash_key' => $hash_key));
 			$row = $statement->fetch(); // Use fetchAll() if you want all results, or just iterate over the statement, since it implements Iterator	
 			if (isset($row['user_id']))
 			{
-				echo "SUcces".$row['user_id'];
-				if ( $this->verify_success($row['user_id']) == TRUE )
+				if ( $row['is_active'] == 1 )
 				{
-					echo "Now you are verified user.";
+					echo "You are already a verified user.";
 				}
 				else
 				{
-					echo "Something went wrong man.";
+					if ( $this->verify_success($row['user_id']) == TRUE )
+					{
+						echo "Now you are verified user.";
+					}
+					else
+					{
+						echo "Something went wrong man.";
+					}
 				}
 			}
 			else
 			{
-				echo "unsucces".$row['user_id'];
+				echo "Looks like the key doesn't exist.";
 			}
 		}
 

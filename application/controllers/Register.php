@@ -43,7 +43,7 @@
 					
 					// generating a random hash key for the activation of the link.
 
-					$hash_key = md5(rand(1,1000));
+					$hash_key = md5(rand(1,100000));
 					
 					$data = array(
 						$name,
@@ -66,13 +66,12 @@
 						}
 						else
 						{
-							echo "Something went wrong.";
+							echo "Something went wrong while sending you a mail.";
 						}
 					}
 					else
 					{
-						$this -> send_verification_mail($name,$email,$hash_key);
-						echo "Unable to success.";
+						echo "Something went wrong while regiteration.";
 					}
 				}
 
@@ -93,7 +92,6 @@
 			// first create the link to be send to the user.
 			$link = site_url() . '/verifyemail?key='. $hash_key;
 
-			echo $link;
 			// subject to be send at the particular email ids
 			$subject = 'Verify your email id for project.com';
 			// message in which the link will be mentioned
@@ -113,6 +111,41 @@
 			return $result;
 
 		}
+
+		function upload()
+		{
+			if(isset($_FILES['image'])){
+				$errors= array();
+				$file_name = $_FILES['image']['name'];
+				$file_size =$_FILES['image']['size'];
+				$file_tmp =$_FILES['image']['tmp_name'];
+				$file_type=$_FILES['image']['type'];
+				$temp = explode('.',$file_name);
+				$file_ext=strtolower(end($temp));
+
+				$expensions= array("jpeg","jpg","png");
+
+				if(in_array($file_ext,$expensions)=== false){
+					$errors[]="extension not allowed, please choose a JPEG or PNG file.";
+				}
+
+				if($file_size > 2097152){
+					$errors[]='File size must be excately 2 MB';
+				}
+
+				if(empty($errors)==true){
+					move_uploaded_file($file_tmp,'/var/www/html/project/assets/images/'.$file_name);
+					echo "Success";
+				}else{
+					print_r($errors);
+				}
+			}
+			else
+			{
+				$this->load->view('upload_image');
+			}
+		}
+
 	}
 	
 	?>
