@@ -73,13 +73,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $active_group = 'default';
 $query_builder = TRUE;
 
-$db['default'] = array(
-	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => '',
-	'password' => '',
-	'database' => '',
-	'dbdriver' => 'mysqli',
+$db['pdo'] = array(
+
+	// this value is changed for the pdo uses.
+	'dsn'	=> 'mysql:host=localhost;dbname=project',
+	// 'hostname' => 'localhost',
+	'username' => 'root',
+	'password' => 'khan',
+	'database' => 'project',
+	'dbdriver' => 'pdo',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),
