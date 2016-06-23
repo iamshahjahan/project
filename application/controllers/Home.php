@@ -10,15 +10,14 @@
 		{
 			parent::__construct();
 			//load the pdo db config 
-			$this->pdo = $this->load->database('pdo', true);
+			// $this->pdo = $this->load->database('pdo', true);
+			$this->load->helper('url');
+			$this->load->model('Users');
 		}
 
 		function index()
 		{
-			// displayting user details for check of the pdo working.
-			$stmt = $this->pdo->get("users");  
-			var_dump($this->pdo);			
-			var_dump($stmt->result());
+			print_r($this->Users->get_data());			
 		}
 	}
 	?>
