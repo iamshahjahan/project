@@ -12,6 +12,8 @@ create table users (
 	primary key (user_id)
 );
 
+
+
 create table tags (
 	tag_id int unsigned AUTO_INCREMENT NOT NULL,
 	name varchar(50) NOT NULL,

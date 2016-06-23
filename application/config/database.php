@@ -70,16 +70,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | The $query_builder variables lets you determine whether or not to load
 | the query builder class.
 */
-$active_group = 'default';
+$active_group = 'pdo';
 $query_builder = TRUE;
 
-$db['default'] = array(
-	'dsn'	=> '',
-	'hostname' => 'localhost',
+$db['pdo'] = array(
+
+	// this value is changed for the pdo uses.
+	'dsn'	=> 'mysql:host=localhost;dbname=project',
+	// 'hostname' => 'localhost',
 	'username' => 'root',
 	'password' => 'khan',
 	'database' => 'project',
-	'dbdriver' => 'mysqli',
+	'dbdriver' => 'pdo',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),
