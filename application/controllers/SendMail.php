@@ -1,4 +1,4 @@
-<?php 
+    <?php 
     /**
     * Sending mails
     */
@@ -10,12 +10,9 @@
             parent::__construct();  
         }
 
-        function sendTestMail()
+        function sendMail($address,$subject,$message)
         {
            $this->load->library('email');
-
-           $subject = 'This is a test';
-           $message = '<p>This message has been sent for testing purposes.</p>';
 
             // Get full html:
            $body =
@@ -40,16 +37,17 @@
 
         $result = $this->email
         ->from('jamiamentors@gmail.com')
-                ->to('ahmsjahan@gmail.com')
+                ->to($address)
                 ->subject($subject)
                 ->message($body)
                 ->send();
 
-                var_dump($result);
-                echo '<br />';
-                echo $this->email->print_debugger();
+                // var_dump($result);
+                // echo '<br />';
+                // echo $this->email->print_debugger();
+                 return $result;
 
-                exit;
+                // exit;
             }
         }
 
