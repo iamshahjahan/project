@@ -56,7 +56,7 @@
 						);
 
 					// 
-					if($this->Users->insert($data))
+					if($this->Users->insert($data) == TRUE)
 					{
 						echo "Inserted successfully.";
 
@@ -91,7 +91,7 @@
 		function send_verification_mail($username,$address,$hash_key)
 		{
 			// first create the link to be send to the user.
-			$link = site_url() . '/verifyemail.php?key='. $hash_key;
+			$link = site_url() . '/verifyemail?key='. $hash_key;
 
 			echo $link;
 			// subject to be send at the particular email ids

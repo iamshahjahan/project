@@ -23,18 +23,34 @@
 			return $query->execute($data);
 		}
 
-		function send_verification_mail($username,$address,$hash_key)
+		function verify_success($user_id)
 		{
-			// first create the link to be send to the user.
-			$link = base_url() + '/verifyemail.php?key='+ $hash_key;
-			// subject to be send at the particular email ids
-			$subject = 'Verify your email id for project.com';
-			// message in which the link will be mentioned
-
-			$message = 'Hi '.$username.'! Welcome to the project.com. Please verify your email by clicking the link: '.$link;
+			$statement = $this->conn_id->prepare("update users set is_active = 1 where user_id = :user_id");
+			return $statement->execute(array(':user_id' => $user_id));
+		}
 
 
-
+		function check_hash_key($hash_key)
+		{
+			$statement = $this->conn_id->prepare("select user_id from users where hash_key = :hash_key");
+			$statement->execute(array(':hash_key' => $hash_key));
+			$row = $statement->fetch(); // Use fetchAll() if you want all results, or just iterate over the statement, since it implements Iterator	
+			if (isset($row['user_id']))
+			{
+				echo "SUcces".$row['user_id'];
+				if ( $this->verify_success($row['user_id']) == TRUE )
+				{
+					echo "Now you are verified user.";
+				}
+				else
+				{
+					echo "Something went wrong man.";
+				}
+			}
+			else
+			{
+				echo "unsucces".$row['user_id'];
+			}
 		}
 
 	}
