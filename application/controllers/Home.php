@@ -17,7 +17,9 @@
 
 		function index()
 		{
-			print_r($this->Users->get_data());			
+			print_r($this->Users->get());			
 		}
+
+		
 	}
 	?>

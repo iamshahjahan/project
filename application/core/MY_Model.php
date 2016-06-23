@@ -17,19 +17,41 @@
 		}
 
 
-		function get_data($id = 0)
+		function get($id = 0)
 		{
 			// if ( $id = 0 )
 			// {
+
 			$sql = $this->conn_id->query('select * from '.$this->table_name);
 
 			$result = $sql -> fetchAll(PDO::FETCH_ASSOC);
 
 			return $result;
-			// }
 		}
 
-		
+		function insert($data)
+		{
+
+			$sql = $this -> conn_id -> exec("INSERT into ".$this->table_name." values ". $data);
+
+			// print_r(implode(',',array_keys($data)));
+
+
+
+
+
+			// $sql =  $this->conn_id->query(
+			// 	'INSERT INTO users (%s) VALUES ("%s")',
+			// 	implode(',',array_keys($data)),
+			// 	implode('","',array_values($data))
+			// 	);
+			// return $sql->execute();
+
+
+
+		}
+
+
 
 	}
 

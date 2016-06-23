@@ -4,7 +4,7 @@
 	<title>Project</title>
 </head>
 <body>
-	<form method="POST" action="index.php/register">
+	<form method="POST" action="register">
 		<label>Name</label>
 		<input type="text" name="name">
 		<br>
