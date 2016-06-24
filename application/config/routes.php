@@ -51,6 +51,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 
 // this route routes the register page
+$route['email'] = 'sendMail/sendTestMail';
+$route['verifyemail'] = 'verifyemail';
+$route['register'] = 'register';
 $route['register'] = 'register';
 $route['default_controller'] = 'home';
 $route['404_override'] = '';
