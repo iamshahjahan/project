@@ -125,7 +125,7 @@
 
 				$expensions= array("jpeg","jpg","png");
 
-				if(in_array($file_ext,$expensions)=== false){
+				if(in_array($file_ext,$expensions) === false){
 					$errors[]="extension not allowed, please choose a JPEG or PNG file.";
 				}
 

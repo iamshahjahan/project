@@ -7,7 +7,7 @@
 		
 		function __construct()
 		{
-			parent::__construct('users');
+			parent::__construct('users','user_id');
 			$this->load->library('Connections');
 			// $this->_assign_libraries();
 			$this->conn_id = $this->connections->get_database_object();
