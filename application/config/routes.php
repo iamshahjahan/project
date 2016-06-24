@@ -54,7 +54,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['email'] = 'sendMail/sendTestMail';
 $route['verifyemail'] = 'verifyemail';
 $route['register'] = 'register';
-$route['register'] = 'register';
+$route['forgot'] = 'forgotpassword';
 $route['default_controller'] = 'home';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

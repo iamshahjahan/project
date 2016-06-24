@@ -14,6 +14,9 @@
      <input type="password" size="20" id="password" name="password"/>
      <br/>
      <input type="submit" value="Login"/>
+     <a href="forgot">Forgot Password</a>
+     <br><br>
+     <a href="register">Register</a>
    </form>
  </body>
 </html

@@ -10,7 +10,7 @@
             parent::__construct();  
         }
 
-        function sendMail($address,$subject,$message)
+        function sendMail($address="hammad73m@gmail.com",$subject="check",$message="check")
         {
            $this->load->library('email');
 
