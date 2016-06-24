@@ -11,33 +11,29 @@
 			$this->load->library('Connections');
 			// $this->_assign_libraries();
 			$this->conn_id = $this->connections->get_database_object();
+<<<<<<< HEAD
+		}
+		// need to update insert function in my_model 
+=======
 
 		}
 
 		// need to update insert function in my_model 
 
+>>>>>>> 4bc312418a9d6fc86b4f3f4fa3412998e8246221
 		function insert($data)
 		{
 			
 			$query = $this->conn_id->prepare("INSERT INTO users(name, email, mobileno, profilepic, passwd, hash_key) VALUES (?,?,?,?,?,?)");
 			$query->execute($data);
 		}
-
-		function login($email, $password)
-		{
-			$query = $this->conn_id->query("select user_id,email from users where email = " . "'".$email."'" ." and passwd = '".md5($password)."' limit 1;");
-			$result = $query -> fetchAll(PDO::FETCH_ASSOC);
-			
-			if(count($result)  == 1)
-			{
-				return $result;
-			}
-			else
-			{
-				return false;
-			}
-		}
+<<<<<<< HEAD
+	}
+	?>
+=======
 
 	}
 
 	?>
+
+>>>>>>> 4bc312418a9d6fc86b4f3f4fa3412998e8246221
