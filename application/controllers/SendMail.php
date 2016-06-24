@@ -10,7 +10,7 @@
             parent::__construct();  
         }
 
-        function sendMail($address,$subject,$message)
+        function sendMail($address = "",$subject ="Test Message",$message="Check.")
         {
            $this->load->library('email');
 
@@ -37,14 +37,14 @@
 
         $result = $this->email
         ->from('jamiamentors@gmail.com')
-                ->to($address)
+                ->to("rahulsaini027@gmail.com")
                 ->subject($subject)
                 ->message($body)
                 ->send();
 
-                // var_dump($result);
+                var_dump($result);
                 // echo '<br />';
-                // echo $this->email->print_debugger();
+                echo $this->email->print_debugger();
                  return $result;
 
                 // exit;
