@@ -7,7 +7,7 @@
 		private $table_name;
 		private $primary_key;
 		protected $conn_id;
-		function __construct($table_name,$primary_key)
+		function __construct($table_name,$primary_key ="")
 		{
 			parent::__construct();
 			$this->table_name = $table_name;

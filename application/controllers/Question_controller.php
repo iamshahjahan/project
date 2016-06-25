@@ -130,6 +130,7 @@
 				else
 				{
 					$this->load->view('question_details',$data);
+
 					var_dump($result);
 				}
 			}
