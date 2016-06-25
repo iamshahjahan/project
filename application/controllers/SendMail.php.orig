@@ -10,7 +10,11 @@
             parent::__construct();  
         }
 
+<<<<<<< HEAD
         function sendMail($address="hammad73m@gmail.com",$subject="check",$message="check")
+=======
+        function sendMail($address = "",$subject ="Test Message",$message="Check.")
+>>>>>>> f34c1028a6dd307d3aa3ae37a5de5ec09db1ca4e
         {
            $this->load->library('email');
 
@@ -37,14 +41,14 @@
 
         $result = $this->email
         ->from('jamiamentors@gmail.com')
-                ->to($address)
+                ->to("rahulsaini027@gmail.com")
                 ->subject($subject)
                 ->message($body)
                 ->send();
 
-                // var_dump($result);
+                var_dump($result);
                 // echo '<br />';
-                // echo $this->email->print_debugger();
+                echo $this->email->print_debugger();
                  return $result;
 
                 // exit;

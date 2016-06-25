@@ -14,6 +14,52 @@
 
 		}
 
+		function userexist($email) //for forgot password
+		{
+			$query = $this->conn_id->prepare("select name from users where email = :email");
+			if ( $query->execute(array(':email' => $email)) == TRUE ){
+				$row = $query->fetch();
+				if ( isset($row['name']))
+				{
+					return $row['name'];
+				}
+				else
+					return 'FAL';
+			}
+			else
+			{
+				return "Query execution failed!";
+			}
+
+		}
+
+		function add_hash($data)
+		{
+			$statement = $this->conn_id->prepare("update users set hash_key  = :hash_id where email = :email_id");///////////////
+			return $statement->execute(array(':hash_id' => $data[1],':email_id' => $data[0]));
+		}
+
+		function check_hash($hash_key)
+		{
+			$statement = $this->conn_id->prepare("select user_id from users where hash_key = :hash_key");//also check corresponding email
+			$statement->execute(array(':hash_key' => $hash_key));
+			$row = $statement->fetch(); 	
+			if (isset($row['user_id']))
+			{
+				return TRUE;
+			}
+			else
+			{
+				return FALSE;
+			}
+		}
+
+		function reset_pass($email,$pass)
+		{
+			$statement = $this->conn_id->prepare("update users set passwd  = :pass_id where email = :email_id");
+			return $statement->execute(array(':pass_id' => $pass,':email_id' => $email));
+		}
+
 		// need to update insert function in my_model 
 
 		function insert($data)
@@ -32,7 +78,7 @@
 
 		function check_hash_key($hash_key)
 		{
-			$statement = $this->conn_id->prepare("select user_id,is_active from users where hash_key = :hash_key");
+			$statement = $this->conn_id->prepare("select user_id,is_active from users where hash_key = :hash_key");//also check corresponding email
 			$statement->execute(array(':hash_key' => $hash_key));
 			$row = $statement->fetch(); // Use fetchAll() if you want all results, or just iterate over the statement, since it implements Iterator	
 			if (isset($row['user_id']))
