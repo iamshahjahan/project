@@ -7,7 +7,7 @@
 		
 		function __construct()
 		{	
-			parent::__construct('tags');
+			parent::__construct('tags','tag_id');
 		}
 
 		function insert($tag)
