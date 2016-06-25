@@ -41,9 +41,10 @@
 			$this->form_validation->set_rules('password2', 'Password', 'trim|required|xss_clean|matches[password]');//add matches at application level also
 			if($this->form_validation->run() == TRUE)
 			{
-				if($this->Users->reset_pass($this->input->post('email'),$this->input->post('password'))==TRUE)
+				if($this->Users->reset_pass($this->input->post('email'),md5($this->input->post('password')))==TRUE)//md5 should be applied at view confirmpass for security
 				{
-					echo "Password Reset Successfull";
+					$this->Users->add_hash(array($this->input->post('email'),'NULL'));//so that link expires->string 'NULL'
+					echo "Password Reset Successfull";//add code for Ridirect after 5s wait
 				}
 				else
 				{
