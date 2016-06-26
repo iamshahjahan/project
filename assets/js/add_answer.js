@@ -16,7 +16,10 @@ $('#answer_submit').click(function (e)
 
 		success:function(response)
 		{
-			console.log(response);
+			if ( response.success )
+			{
+				// the answer is added successfully. 
+			}
 		},
 		error:function(response)
 		{
