@@ -25,6 +25,8 @@
 	</form>
 	<!-- let us display all answers to the above question. Need to add pagination here. -->
 
+	
+
 	<script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery.js"></script>
 	<script type="text/javascript" src="<?php echo base_url();?>assets/js/add_answer.js"></script>
 </body>

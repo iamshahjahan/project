@@ -14,6 +14,7 @@
 	<?php
 		// let us check whether an entry related to current user and tag exists in the table or not?
 	$tag_id = $result[0]['tag_id'];
+	
 	if ( $this->session->userdata('logged_in') != null )
 	{
 			// get data from follows to check whether the data exists or not.
@@ -43,6 +44,7 @@
 
 				<button id="follow">Follow</button>
 
+			</form>
 				<?php
 
 				echo "user have not followed.";
@@ -52,8 +54,27 @@
 	{
 		echo "User is not logged in.";
 	}
+	// Now we need to get all questions from table related 
+	// var_dump($questions);
+	// echo site_url().'/question/get/';
+	foreach ($questions as $key => $value) {
+		?>
+			<a href="<?php echo site_url().'/question/get/'.$questions[1]['q_id'];?>">
+			<?php  
+				echo $value['title'];
+			?>
+			</a>
+
+		<?php
+
+	}
+
+
+
 	?>
-	</form>
+
+
+
 	<script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery.js"></script>
 	<script type="text/javascript" src="<?php echo base_url();?>assets/js/follow.js"></script>
 </body>

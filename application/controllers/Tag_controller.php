@@ -10,7 +10,9 @@
 			parent::__construct();
 			$this->load->model('Tags');
 			$this->load->model('Follows');
+			$this->load->model('Question_tags');
 			$this->load->library("session");
+			$this->load->helper("url");
 
 		}
 
@@ -24,8 +26,14 @@
 			{
 
 				$result = $this->Tags->get($tag_id);
+				// let us get all question related to this tag from table.
+				$questions = $this->Question_tags->get_questions_by_tag_id($tag_id);
 
-				$data  = array('result' => $result );
+
+				$data  = array(
+						'result' => $result,
+						'questions' => $questions,
+						 );
 				// $data = $result;
 				if ( !$result )
 				{

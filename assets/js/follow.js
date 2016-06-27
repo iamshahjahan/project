@@ -54,7 +54,7 @@ $('#unfollow').click(
 			{
 
 				console.log(data);
-				location.reload();
+				location.reload(); 
 
 			},
 			error: function(data)
