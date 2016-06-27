@@ -57,9 +57,10 @@
 	// Now we need to get all questions from table related 
 	// var_dump($questions);
 	// echo site_url().'/question/get/';
+			$i = 0;
 	foreach ($questions as $key => $value) {
 		?>
-			<a href="<?php echo site_url().'/question/get/'.$questions[1]['q_id'];?>">
+			<a href="<?php echo site_url().'/question/get/'.$questions[$i++]['q_id'];?>">
 			<?php  
 				echo $value['title'];
 			?>

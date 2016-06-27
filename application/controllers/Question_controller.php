@@ -14,6 +14,7 @@
 			$this->load->helper('url');
 			$this->load->helper('security');
 			$this->load->model('Questions');
+			$this->load->model('Answers');
 		}
 		function index()
 		{
@@ -122,8 +123,11 @@
 			{
 
 				$result = $this->Questions->get($q_id);
+				$answers = $this->Answers->get_by_question_id($q_id);
 
-				$data  = array('result' => $result );
+				$data  = array(
+						'result' => $result,
+						'answers' => $answers );
 				// $data = $result;
 				if ( !$result )
 				{
