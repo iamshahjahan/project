@@ -53,7 +53,7 @@
 							}
 
 							else {
-								echo "Something is wrong with the post parameters.";
+								// echo "Something is wrong with the post parameters.";
 							}
 						}
 					} 
@@ -67,7 +67,7 @@
 						$title,
 						$description,
 						//Todo: User_id from session 
-						1
+						$this->session->userdata('logged_in')['user_id']
 						);
 
 					// $tags = array();
