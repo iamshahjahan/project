@@ -57,6 +57,8 @@ $route['question'] = 'question_controller';
 $route['question/get'] = 'question_controller/get';
 $route['question/get/(:num)'] = 'question_controller/get/$1';
 
+$route['follows'] = 'follow_controller';
+
 $route['tag'] = 'tag_controller';
 $route['tag/get'] = 'tag_controller/get';
 $route['tag/get/(:num)'] = 'tag_controller/get/$1';

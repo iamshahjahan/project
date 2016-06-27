@@ -13,14 +13,21 @@
 
 	<?php
 		// let us check whether an entry related to current user and tag exists in the table or not?
-		$tag_id = $result[0]['tag_id'];
-		if ( $this->session->userdata('logged_in') != null )
-		{
+	$tag_id = $result[0]['tag_id'];
+	if ( $this->session->userdata('logged_in') != null )
+	{
 			// get data from follows to check whether the data exists or not.
+
+		?>
+		<form id="follows" method="POST" action="<?php echo site_url();?>/follows">
+			<input type="hidden" id="tag_id" value="<?php echo $result[0]['tag_id'];?>" />
+			<input type="hidden" id="user_id" value="<?php echo $this->session->userdata('logged_in')['user_id'];?>" />
+
+			<?php
 
 			if ( $this->Follows->get($result[0]['tag_id'],$this->session->userdata('logged_in')['user_id']) )
 			{
-				echo "Use has followed.";
+				echo "User has followed.";
 				// show follow button here
 
 				?>
@@ -40,11 +47,14 @@
 
 				echo "user have not followed.";
 			}
-		}
-
-
+	}
+	else
+	{
+		echo "User is not logged in.";
+	}
 	?>
-<script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery.js"></script>
-<script type="text/javascript" src="<?php echo base_url();?>assets/js/follow.js"></script>
+	</form>
+	<script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery.js"></script>
+	<script type="text/javascript" src="<?php echo base_url();?>assets/js/follow.js"></script>
 </body>
 </html>
