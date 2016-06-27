@@ -11,12 +11,12 @@ class Home extends CI_Controller {
  
  function index()
  {
- 	print_r($this->Users->get());//shahjehan's
+ 	//print_r($this->Users->get());//shahjehan's
    if($this->session->userdata('logged_in'))
    {
      $session_data = $this->session->userdata('logged_in');
-     $data['email'] = $session_data['email'];
-     $this->load->view('home_view', $data);//send sess data
+     //$data['email'] = $session_data['email'];
+     $this->load->view('home_view', $session_data);//send sess data
    }
    else
    {

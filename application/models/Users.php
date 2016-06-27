@@ -60,6 +60,19 @@
 			return $statement->execute(array(':pass_id' => $pass,':email_id' => $email));
 		}
 
+		function setImagePath($data)
+		{
+			$statement = $this->conn_id->prepare("update users set profilepic  = :path where user_id = :user_id");
+			return $statement->execute(array(':path' => $data[1],':user_id' => $data[0]));
+		}
+
+		function save($data)
+		{
+			//print_r($data);
+			$statement = $this->conn_id->prepare("update users set name  = :name, mobileno = :mob, about = :about where user_id = :user_id");
+			return $statement->execute(array(':name' => $data[0],':mob' => $data[1],':about' => $data[2],':user_id' => $data[3]));
+		}
+
 		// need to update insert function in my_model 
 
 		function insert($data)
