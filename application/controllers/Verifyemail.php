@@ -16,10 +16,8 @@
 			if ( isset($_GET['key']))
 			{
 				$hash_key = $_GET['key'];
-				echo "hash_key is:" .$hash_key;
 				$this->Users->check_hash_key($hash_key);
 				
-
 			}
 			else
 			{

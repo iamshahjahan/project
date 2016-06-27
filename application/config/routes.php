@@ -52,13 +52,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 // this route routes the register page
 $route['email'] = 'sendMail/sendMail';
+
 $route['question'] = 'question_controller';
+$route['question/get'] = 'question_controller/get';
+$route['question/get/(:num)'] = 'question_controller/get/$1';
+
+$route['tag'] = 'tag_controller';
+$route['tag/get'] = 'tag_controller/get';
+$route['tag/get/(:num)'] = 'tag_controller/get/$1';
+
+
 $route['answer'] = 'answer_controller';
 $route['answer/post_answer'] = 'answer_controller/post_answer';
-$route['question/get'] = 'question_controller/get';
 $route['verifyemail'] = 'verifyemail';
 $route['register'] = 'register';
 $route['forgot'] = 'forgotpassword';
-$route['default_controller'] = 'home';
-$route['404_override'] = '';
-$route['translate_uri_dashes'] = FALSE;
+$route['default_controller'] = 'tag_controller';
+// $route['404_override'] = '';
+// $route['translate_uri_dashes'] = FALSE;

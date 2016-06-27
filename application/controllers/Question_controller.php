@@ -114,12 +114,14 @@
 			}
 		}
 
-		function get()
+		function get($q_id = null)
 		{
-			if ( isset($_GET['id']))
+			// echo $q_id;
+
+			if ( $q_id != null )
 			{
 
-				$result = $this->Questions->get($_GET['id']);
+				$result = $this->Questions->get($q_id);
 
 				$data  = array('result' => $result );
 				// $data = $result;
@@ -136,8 +138,7 @@
 			}
 			else
 			{
-				$this->Questions->get();
-
+				var_dump($this->Questions->get());
 			}
 		}
 	}

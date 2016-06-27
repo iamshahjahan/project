@@ -26,7 +26,6 @@
 				// it means we need to display all data from table.
 				if ( $id == 0 )
 				{
-
 					$sql = $this->conn_id->query('select * from '.$this->table_name);
 
 					$result = $sql -> fetchAll(PDO::FETCH_ASSOC);
