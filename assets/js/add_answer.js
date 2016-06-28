@@ -20,6 +20,8 @@ $('#answer_submit').click(function (e)
 			{
 				// the answer is added successfully. 
 			}
+				// location.reload();
+			console.log(response)
 		},
 		error:function(response)
 		{

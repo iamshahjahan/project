@@ -35,20 +35,18 @@ class VerifyLogin extends CI_Controller
 
        //query the database
    $result = $this->Users->login($email, $password);
-
+   
    if($result)
    {
-     $sess_array = array();
-     foreach($result as $row)
-     {
-       $sess_array = array(
-         'user_id' => $row['user_id'],
-         'email' => $row['email']
-         );
-       $this->session->set_userdata('logged_in', $sess_array);
-     }
+
+     $sess_array = array(
+      'user_id' => $result[0]['user_id'],
+      'email' => $result[0]['email']  
+      );
+     $this->session->set_userdata('logged_in', $sess_array);
      return TRUE;
    }
+
    else
    {
      $this->form_validation->set_message('check_database', 'Invalid email or password');

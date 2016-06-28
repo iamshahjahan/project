@@ -24,5 +24,29 @@
 				// Todo
 			}
 		}
+
+
+		function get_questions_by_tag_id($tag_id)
+		{
+			try
+			{
+				$query = "select * from questions join question_tags where question_tags.tag_id = '".$tag_id."'and question_tags.q_id = questions.q_id order by questions.creation_time DESC ";
+
+				$sql = $this->conn_id->query($query);
+
+				if ( $row = $sql->fetchAll())
+				{
+					return $row;
+				}
+				else
+				{
+					echo "I am here.";
+				}
+			}
+			catch(PDOException $e)
+			{
+				echo "Something went wrong.";
+			}
+		}
 	}
 	?>

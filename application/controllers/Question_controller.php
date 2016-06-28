@@ -14,6 +14,8 @@
 			$this->load->helper('url');
 			$this->load->helper('security');
 			$this->load->model('Questions');
+			$this->load->model('Answers');
+			$this->load->model('Users');
 		}
 		function index()
 		{
@@ -52,7 +54,7 @@
 							}
 
 							else {
-								echo "Something is wrong with the post parameters.";
+								// echo "Something is wrong with the post parameters.";
 							}
 						}
 					} 
@@ -66,7 +68,7 @@
 						$title,
 						$description,
 						//Todo: User_id from session 
-						1
+						$this->session->userdata('logged_in')['user_id']
 						);
 
 					// $tags = array();
@@ -114,14 +116,30 @@
 			}
 		}
 
-		function get()
+		function get($q_id = null)
 		{
-			if ( isset($_GET['id']))
+			// echo $q_id;
+
+			if ( $q_id != null )
 			{
+				// let us find the question detials
+				
+				$result = $this->Questions->get($q_id);
+				
+				// ge all answers to the above questions.
 
-				$result = $this->Questions->get($_GET['id']);
+				$answers = $this->Answers->get_by_question_id($q_id);
+				
+				// Let us get user details of the user who answered the questions.
 
-				$data  = array('result' => $result );
+				$original_question_poster = $this->Users->get($result[0]['user_id']);
+
+
+				$data  = array(
+					'result' => $result,
+					'answers' => $answers, 
+					'original_question_poster' => $original_question_poster
+					);
 				// $data = $result;
 				if ( !$result )
 				{
@@ -136,8 +154,7 @@
 			}
 			else
 			{
-				$this->Questions->get();
-
+				var_dump($this->Questions->get());
 			}
 		}
 	}

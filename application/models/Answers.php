@@ -68,7 +68,11 @@
 
 		function insert($data)
 		{
-			$sql = $this->conn_id->prepare("INSERT INTO answers(q_id, user_id, answer_text) VALUES (?,?,?)");
+			echo "I am in insert.";
+			$query = "INSERT INTO answers(q_id, user_id, answer_text) VALUES (?,?,?)" ;
+			echo $query ;
+			var_dump($data);
+			$sql = $this->conn_id->prepare($query);
 			return $sql->execute($data);
 		}
 	}
