@@ -56,6 +56,7 @@ $route['question'] = 'question_controller';
 $route['answer'] = 'answer_controller';
 $route['answer/post_answer'] = 'answer_controller/post_answer';
 $route['question/get'] = 'question_controller/get';
+$route['question/get/(:num)'] = 'question_controller/get/$1';
 $route['verifyemail'] = 'verifyemail';
 $route['register'] = 'register';
 $route['forgot'] = 'forgotpassword';
