@@ -7,10 +7,14 @@
 	<!-- this file is to display qeustion details -->
 
 	<!-- display question related data -->
+	<?php 
+
+		$this->load->view('thumbnail_view.php');
+	?>
 	<h1><?php echo $result[0]['title']; ?></h1>
 	<h1><?php echo $result[0]['description']; ?></h1>
 	<h1><?php echo $result[0]['creation_time']; ?></h1>
-	<!-- <h1><?php echo $result[0]['user_id']; ?></h1> -->
+
 
 	<form method="POST" action="<?php echo site_url(); ?>/answer/post_answer" id="post_answer">
 		<textarea name="textarea" id="answer" rows="10" cols="50"> Post Answer</textarea>

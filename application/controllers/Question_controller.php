@@ -15,6 +15,7 @@
 			$this->load->helper('security');
 			$this->load->model('Questions');
 			$this->load->model('Answers');
+			$this->load->model('Users');
 		}
 		function index()
 		{
@@ -121,13 +122,24 @@
 
 			if ( $q_id != null )
 			{
-
+				// let us find the question detials
+				
 				$result = $this->Questions->get($q_id);
+				
+				// ge all answers to the above questions.
+
 				$answers = $this->Answers->get_by_question_id($q_id);
+				
+				// Let us get user details of the user who answered the questions.
+
+				$original_question_poster = $this->Users->get($result[0]['user_id']);
+
 
 				$data  = array(
-						'result' => $result,
-						'answers' => $answers );
+					'result' => $result,
+					'answers' => $answers, 
+					'original_question_poster' => $original_question_poster
+					);
 				// $data = $result;
 				if ( !$result )
 				{

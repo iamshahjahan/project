@@ -45,10 +45,10 @@
 				<button id="follow">Follow</button>
 
 			</form>
-				<?php
+			<?php
 
-				echo "user have not followed.";
-			}
+			echo "user have not followed.";
+		}
 	}
 	else
 	{
@@ -57,26 +57,23 @@
 	// Now we need to get all questions from table related 
 	// var_dump($questions);
 	// echo site_url().'/question/get/';
-			$i = 0;
-	foreach ($questions as $key => $value) {
-		?>
-			<a href="<?php echo site_url().'/question/get/'.$questions[$i++]['q_id'];?>">
-			<?php  
-				echo $value['title'];
+	$i = 0;
+	if ( $questions != null)
+	{
+		foreach ($questions as $question) {
 			?>
+			<a href="<?php echo site_url().'/question/get/'.$question['q_id'];?>">
+				<?php  
+				echo $question['title'];
+				?>
 			</a>
 
-		<?php
+			<?php
+		}
 
 	}
-
-
-
-	?>
-
-
-
-	<script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery.js"></script>
+ ?>
+ <script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery.js"></script>
 	<script type="text/javascript" src="<?php echo base_url();?>assets/js/follow.js"></script>
 </body>
 </html>
