@@ -2,66 +2,90 @@
 class VerifyLogin extends CI_Controller 
 {
 
- function __construct()
- {
-   parent::__construct();
+   function __construct()
+   {
+     parent::__construct();
    $this->load->model('Users','',TRUE);//args
- }
-
- function index()
- {
-       //This method will have the credentials validation
    $this->load->library('form_validation');
+}
 
-   $this->form_validation->set_rules('email', 'email', 'trim|required|valid_email|xss_clean');
-   $this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean|callback_check_database');
-   if($this->form_validation->run() == FALSE)
-   {
-             //Field validation failed.  User redirected to login page
-     $this->load->view('login_view');
-   }
-   else
-   {
-             //Go to private area
-     // redirect('home', 'refresh');
-   }
+function index()
+{
+       //This method will have the credentials validation
 
- }
+    if (($this->input->post('email') != null ) && ($this->input->post('password') != null))
+    {
+        $this->form_validation->set_rules('email', 'email', 'trim|required|valid_email|xss_clean');
+        $this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean');
 
- function check_database($password)
+        if($this->form_validation->run() == FALSE)
+        {
+            $response = array(
+                'email' => form_error('email'), 
+                'password' => form_error('password'), 
+                'success' => 0
+                );
+        }
+        else
+        {
+            $email = $this->input->post('email');
+            $password = $this->input->post('password'); 
+
+            if ( $this->check_database($email,$password))
+            {
+            // login is successful.
+                $response = array(
+                    'success' => 1, 
+                    );
+
+            }
+            else
+            {
+                $response = array(
+                    'success' => 0,
+                    'message' => 'Please  enter a valid email and password combination.' 
+                    );
+
+            }
+        }
+
+    }
+
+    else
+    {
+       $response = array(
+        'success' => 0,
+        'message' => "Email and password is not set."
+        );
+    }
+    echo json_encode($response);
+}
+
+
+function check_database($email,$password)
+{
+
+// check for login credentials.
+
+ $result = $this->Users->login($email, $password);
+
+ if($result)
  {
-       //Field validation succeeded.  Validate against database
-   $email = $this->input->post('email');
 
-       //query the database
-   $result = $this->Users->login($email, $password);
-   
-   if($result)
-   {
-
-     $sess_array = array(
+   $sess_array = array(
       'user_id' => $result[0]['user_id'],
       'email' => $result[0]['email']  
       );
-     var_dump($sess_array);
-     $this->session->set_userdata('logged_in', $sess_array);
-     // set the cookie here too.
-     // $cookie = array(
-     //  'name'   => 'logged_in',
-     //  'value'  => $sess_array,
-     //  'expire' =>  86500,
-     //  'secure' => false
-     //  );
-     // $this->input->set_cookie($cookie); 
-     // var_dump($this->input->cookie('logged_in', false));
-     return TRUE;
-   }
+   // var_dump($sess_array);
+   $this->session->set_userdata('logged_in', $sess_array);
+   return TRUE;
+}
 
-   else
-   {
-     $this->form_validation->set_message('check_database', 'Invalid email or password');
-     return FALSE;
-   }
- }
+else
+{
+   $this->form_validation->set_message('check_database', 'Invalid email or password');
+   return FALSE;
+}
+}
 }
 ?>
