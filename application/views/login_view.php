@@ -7,7 +7,7 @@
             </div>
 
             <div class="panel panel-body">
-                <form class="form-horizontal" id="login_form" action="verifylogin">
+                <form class="form-horizontal" id="login_form" method="POST" action="verifylogin">
                     <!-- email goes here. -->
                     <div class="form-group">
                         <label for="email" class="col-sm-2 control-label">Email</label>
@@ -25,20 +25,20 @@
                         <span id="password_error"></span>
                     </div>
                     <!-- sign in button is here. -->
-                    <div id="form_error">
+                    <span id="form_error" class="col-sm-offset-2">
                         <!-- <p>Some thing is here.</p> -->
-                    </div>
+                    </span>
+                    <br>
 
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-8">
-                            <button type="submit" class="btn btn-success">Sign in</button>
+                            <button type="submit" name="submit" class="btn btn-success">Sign in</button>
                             <div class="pull-right">
                                 <button class="btn btn-defualt" id="register"><a href="register">Register</a></button>
 
                                 <button class="btn btn-defualt" id="forgotpassword"><a href="forgot">Forgot Password</a></button>
                             </div>
                         </div>
-
                     </div>
                 </form>
             </div>

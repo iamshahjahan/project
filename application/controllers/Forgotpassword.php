@@ -24,7 +24,7 @@ class Forgotpassword extends CI_Controller {
 
 				$email = $_POST['email'];
 			 		// generating a random hash key for the activation of the link.
-				if($this->Users->userexist($email) != 'FAL')
+				if($this->Users->userexist($email))
 				{
 					$hash_key = md5(rand(1,100000));
 					$data = array($email,$hash_key);

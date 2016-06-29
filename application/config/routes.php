@@ -66,7 +66,10 @@ $route['tag/get/(:num)'] = 'tag_controller/get/$1';
 $route['answer'] = 'answer_controller';
 $route['answer/post_answer'] = 'answer_controller/post_answer';
 $route['verifyemail'] = 'verifyemail';
+
 $route['register'] = 'register';
+$route['verifyregister'] = 'verifyregister';
+
 $route['forgot'] = 'forgotpassword';
 $route['default_controller'] = 'home';
 $route['404_override'] = '';

@@ -24,6 +24,8 @@
       <ul class="nav navbar-nav">
         <li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
         <li><a href="#">About</a></li>
+        <li><a href="login">Sign In</a></li>
+        <li><a href="register">Sign Up</a></li>
       
       </ul>
       <form class="navbar-form navbar-left" role="search">

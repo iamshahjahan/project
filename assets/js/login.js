@@ -1,6 +1,6 @@
 $(document).ready(function () {
 	
-$(function() {
+	$(function() {
     // Setup form validation on the #register-form element
     $("#login_form").validate({
         // Specify the validation rules
@@ -28,7 +28,9 @@ $(function() {
         		success: function(data) {
         			if (data.success)
         			{
-        				console.log("Form is submitted.");
+        				// login is successful. Redirect from here to home.
+        				window.location.href = "home";
+
         			}
         			else 
         			{

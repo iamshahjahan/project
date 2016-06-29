@@ -17,19 +17,21 @@
 		function userexist($email) //for forgot password
 		{
 			$query = $this->conn_id->prepare("select name from users where email = :email");
-			if ( $query->execute(array(':email' => $email)) == TRUE ){
+			if ( $query->execute(array(':email' => $email)) == TRUE )
+			{
 				$row = $query->fetch();
-				if ( isset($row['name']))
+				if ( !empty($row))
 				{
-					return $row['name'];
+					return TRUE;
 				}
 				else
-					return 'FAL';
+					return FALSE;
 			}
 			else
 			{
-				return "Query execution failed!";
+				return TRUE;
 			}
+			// return $query->execute(array(':email' => $email));
 
 		}
 
