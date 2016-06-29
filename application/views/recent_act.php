@@ -1,12 +1,12 @@
  <div>
- 	<h1>Your Recent Activity</h1>
  	<?php
+ 	echo " Recent Activity</br>";
  	foreach($finaldata as $row) {
- 		echo "<a href=".site_url().'/question/get/'.$row['q_id'].">".$row['title']."</a>";
- 		echo "  Created on: ".$row['creation_time']."</br>";
+ 		echo "Q. <a href=".site_url().'/question/get/'.$row['q_id'].">".$row['title']."</a>";
+ 		echo "  Asked on: ".$row['creation_time']."</br>";
  		if(isset($row['answer_time']))
  		{
- 			echo "<a href=".site_url().'/answer/get/'.$row['a_id'].">".$row['answer_text']."</a>";
+ 			echo "A. <a href=".site_url().'/answer/get/'.$row['a_id'].">".$row['answer_text']."</a>";
  			echo "  answered on: ".$row['answer_time']."</br>";
  		}
  		echo "</br>";

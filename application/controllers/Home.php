@@ -7,6 +7,7 @@ class Home extends CI_Controller {
    parent::__construct();
    $this->load->helper('url');
    $this->load->model('Users');   
+   $this->load->library('Recent_Activity');
  }
  
  function index()
@@ -17,6 +18,9 @@ class Home extends CI_Controller {
      $session_data = $this->session->userdata('logged_in');
      //$data['email'] = $session_data['email'];
      $this->load->view('home_view', $session_data);//send sess data
+     //echo "Recent Question and Answers";
+     $this->recent_activity->recent_act();
+
    }
    else
    {

@@ -55,6 +55,7 @@ $route['email'] = 'sendMail/sendMail';
 $route['question'] = 'question_controller';
 $route['question/get'] = 'question_controller/get';
 $route['question/get/(:num)'] = 'question_controller/get/$1';
+//$route['profile/get/(:num)'] = 'profile/recent_act/$1';
 
 $route['follows'] = 'follow_controller';
 

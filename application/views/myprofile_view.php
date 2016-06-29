@@ -1,9 +1,9 @@
 <html >
  <head>
-   <title>Profile</title>
+   <title>My Profile</title>
  </head>
  <body>
-   <h1>Profile</h1>
+   <h1>My Profile</h1>
    <img src="<?php echo base_url();?>/assets/images/<?php echo $profilepic;?>" alt="Image not available" style="width:200px;height:250px;">
    <a href="register/upload">Upload New Image</a>
    <?php echo validation_errors(); ?>
@@ -41,7 +41,7 @@
 
 	</form>
 	<p> JOINED ON : <?php echo $creation_time; ?></p>
-   <p> RECENT ACTIVITY : ></p>
+   <!--p> RECENT ACTIVITY : ></p--recent_act(>
    <a href="profile/changepass">Change Password</a>
    <a href="home/logout">Logout</a>
  </body>
