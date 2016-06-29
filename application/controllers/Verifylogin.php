@@ -23,7 +23,7 @@ class VerifyLogin extends CI_Controller
    else
    {
              //Go to private area
-     redirect('home', 'refresh');
+     // redirect('home', 'refresh');
    }
 
  }
@@ -43,7 +43,17 @@ class VerifyLogin extends CI_Controller
       'user_id' => $result[0]['user_id'],
       'email' => $result[0]['email']  
       );
+     var_dump($sess_array);
      $this->session->set_userdata('logged_in', $sess_array);
+     // set the cookie here too.
+     // $cookie = array(
+     //  'name'   => 'logged_in',
+     //  'value'  => $sess_array,
+     //  'expire' =>  86500,
+     //  'secure' => false
+     //  );
+     // $this->input->set_cookie($cookie); 
+     // var_dump($this->input->cookie('logged_in', false));
      return TRUE;
    }
 
