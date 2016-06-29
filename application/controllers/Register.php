@@ -77,12 +77,15 @@
 
 				else
 				{
+					echo "Unable to validate properly.";
+
 					$this->load->view('register');
 				}
 				
 			}
 			else
 			{
+				echo "Submit is not set properly.";
 				$this->load->view('register');
 			}
 		}
@@ -138,10 +141,10 @@
 					//base_url().'assets/images/'.$file_name
 					if($this->Users->setImagePath(array($this->session->userdata('logged_in')['user_id'],$file_name)))
 					{	
-				    	echo "Success";
-				    }
-				    else
-					    echo "Unable to set Image Path";
+						echo "Success";
+					}
+					else
+						echo "Unable to set Image Path";
 				}else{
 					print_r($errors);
 				}

@@ -89,7 +89,7 @@ $autoload['drivers'] = array();
 |
 |	$autoload['helper'] = array('url', 'file');
 */
-$autoload['helper'] = array('url','security'); //security for xss_clean
+$autoload['helper'] = array('url','security','cookie'); //security for xss_clean
 
 /*
 | -------------------------------------------------------------------
