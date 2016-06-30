@@ -35,7 +35,7 @@
 
 				$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|xss_clean');
 
-				$this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean|min_length[6]');
 
 				$this->form_validation->set_rules('name', 'Name', 'required|min_length[1]');
 
@@ -73,7 +73,7 @@
 						);
 					
 					// let us check whether email already exists in the table.
-					if ( !$this->Users->userexist($this->input->post('email')))
+					if ( !$this->Users->userexist('email',$this->input->post('email')))
 					{
 						// now insert the data into database.
 
@@ -106,7 +106,7 @@
 						// now the email id exists already.
 						$response = array(
 							'success' => 0,
-							'message' => "The email id exists already. Please enter a different email id or login."
+							'email' => "The email id exists already. Please enter a different email id or login."
 							);
 					}
 					

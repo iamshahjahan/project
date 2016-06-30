@@ -14,10 +14,11 @@
 
 		}
 
-		function userexist($email) //for forgot password
+		function userexist($field,$value) //for mobile or email unique check.
 		{
-			$query = $this->conn_id->prepare("select name from users where email = :email");
-			if ( $query->execute(array(':email' => $email)) == TRUE )
+
+			$query = $this->conn_id->prepare("select name from users where ".$field." = :value");
+			if ( $query->execute(array(':value' => $value)) == TRUE )
 			{
 				$row = $query->fetch();
 				if ( !empty($row))

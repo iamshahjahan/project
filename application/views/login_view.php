@@ -33,14 +33,15 @@
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-8">
                             <button type="submit" name="submit" class="btn btn-success">Sign in</button>
-                            <div class="pull-right">
-                                <button class="btn btn-defualt" id="register"><a href="register">Register</a></button>
-
-                                <button class="btn btn-defualt" id="forgotpassword"><a href="forgot">Forgot Password</a></button>
-                            </div>
                         </div>
                     </div>
                 </form>
+                <!-- register and forgot password button. -->
+                <div class="pull-right">
+                    <a href="register"><button class="btn btn-defualt" id="register">Register</button></a>
+
+                    <a href="forgot"><button class="btn btn-defualt" id="forgotpassword">Forgot Password</button></a>
+                </div>
             </div>
         </div>
     </div>
