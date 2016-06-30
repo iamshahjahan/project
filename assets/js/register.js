@@ -1,9 +1,6 @@
 $(document).ready(function () {
-
-
     // override jquery validate plugin defaults
     highlight_errors_validate();
-
     // Setup form validation on the #register-form element
     $("#register_form").validate({
         // Specify the validation rules
@@ -51,31 +48,52 @@ $(document).ready(function () {
         },
 
         submitHandler: function(form) {
-         $.ajax({  
-          type: 'POST',
-          url: $(form).attr('action'),
-          data: $(form).serialize(),
-          dataType : 'json',
-          success: function(data) {
+
+            // waiting for server response.
+
+            $('#form_error').empty();
+            $('#password_error').empty();
+            $('#name_error').empty();
+            $('#email_error').empty();
+            $('#mobileno_error').empty();
+            $('#confirm_password_error').empty();
+
+
+            $('#form_error').html(
+                '<div class="alert alert-success col-sm-8">Regiseration going on......</div><br>');  
+
+
+            $.ajax({  
+              type: 'POST',
+              url: $(form).attr('action'),
+              data: $(form).serialize(),
+              dataType : 'json',
+              success: function(data) {
 
                     // set all errors to empty tag.
                     console.log("Resetting errrors.");
-                    $('#form_error').empty();
-                    $('#password_error').empty();
-                    $('#name_error').empty();
-                    $('#email_error').empty();
-                    $('#mobileno_error').empty();
-                    $('#confirm_password_error').empty();
-
+                    
                     if (data.success)
                     {
                         if ( data.email != null )
-                        {
-                            console.log("verification link has been sent to " + data.email);
+
+                        {                          
+                            $('#form_error').html(
+                                '<div class="alert alert-success col-sm-8">Registeration successful. Please verify your email by click a link sent to you.</div><br>');  
+
+                            setTimeout(function(){
+                                $('#form_error').empty();
+                                window.location = 'upload';
+
+                            },3000);
+
                         }
                         else
                         {
-                            console.log("Unable to send verification link." + data.email);
+                            // console.log("" + data.email);
+                            $('#form_error').html(
+                                '<div class="alert alert-success col-sm-8">Unable to send verification link. Please try later.</div><br>');  
+
                         }
                     }
                     else 
@@ -87,6 +105,7 @@ $(document).ready(function () {
                      }
                      else
                      {
+                        $('#form_error').empty();
                         if ( data.email != "" && data.email != null  )
                          $('#email_error').html(
                             '<div class="alert alert-danger col-sm-8">' + data.email + '</div><br>');
@@ -113,9 +132,9 @@ $(document).ready(function () {
            console.log(data);
        }
    });
-         return false;
-     },
- });
+            return false;
+        },
+    });
 
 
 

@@ -18,6 +18,11 @@ $(document).ready(function () {
         },
         
         submitHandler: function(form) {
+            $('#forgotpassword_error').empty();
+            $('#forgotpassword_error').html(
+                '<div class="alert alert-info col-sm-8">Sending reset password link....</div><br>');  
+
+
             $.ajax({  
                 type: 'POST',
                 url: $(form).attr('action'),
@@ -25,8 +30,6 @@ $(document).ready(function () {
                 dataType : 'json',
                 success: function(data) 
                 {
-                    console.log("success.")
-                    $('#forgotpassword_error').empty();
 
                     if (data.success)
                     {
@@ -103,20 +106,20 @@ $(document).ready(function () {
                         else
                         {
                           if ( data.email != "" && data.email != null  )
-                           $('#email_error').html(
-                            '<div class="alert alert-danger col-sm-8">' + data.email + '</div><br>');
+                             $('#email_error').html(
+                                '<div class="alert alert-danger col-sm-8">' + data.email + '</div><br>');
 
-                       if ( data.password != "" && data.password != null  )
-                         $('#password_error').html(
+                         if ( data.password != "" && data.password != null  )
+                           $('#password_error').html(
                             '<div class="alert alert-danger col-sm-8">' + data.password + '</div><br>');
 
-                 }
-             }
-         },
-         error: function(data) {
-             console.log(data);
-         }
-     });
+                   }
+               }
+           },
+           error: function(data) {
+               console.log(data);
+           }
+       });
             return false;
         },
     });

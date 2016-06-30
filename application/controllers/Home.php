@@ -13,7 +13,7 @@ class Home extends CI_Controller {
  function index()
  {
  	//print_r($this->Users->get());//shahjehan's
-   if($this->session->userdata('logged_in'))
+   if($this->session->userdata('logged_in'))set_userdata
    {
      $session_data = $this->session->userdata('logged_in');
      //$data['email'] = $session_data['email'];
@@ -21,12 +21,11 @@ class Home extends CI_Controller {
      $this->load->view('home_view', $session_data);//send sess data
      //echo "Recent Question and Answers";
      $this->recent_activity->recent_act();
-
+     var_dump($this->session->userdata('logged_in'));
      $this->load->view('templates/footer');//send sess data
    }
    else
    {
-     //If no session, redirect to login page
      redirect('login', 'refresh');
    }
  }

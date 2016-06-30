@@ -69,7 +69,9 @@ $route['answer/post_answer'] = 'answer_controller/post_answer';
 $route['verifyemail'] = 'verifyemail';
 
 $route['register'] = 'register';
-$route['verifyregister'] = 'verifyregister';
+$route['register/verifyregister'] = 'verifyregister';
+
+$route['register/upload'] = 'upload';
 
 $route['forgot'] = 'forgotpassword';
 $route['default_controller'] = 'home';
