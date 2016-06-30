@@ -71,9 +71,14 @@
 						// a random number for generating links for 
 						$hash_key
 						);
-					
+						
+
+
 					// let us check whether email already exists in the table.
-					if ( !$this->Users->userexist('email',$this->input->post('email')))
+					$email_exists = $this->Users->userexist('email',$this->input->post('email'));
+					$mobile_exists = $this->Users->userexist('mobileno',$this->input->post('mobileno'));
+
+					if ( !$email_exists && !$mobile_exists)
 					{
 						// now insert the data into database.
 
@@ -103,11 +108,15 @@
 					}
 					else
 					{
-						// now the email id exists already.
 						$response = array(
 							'success' => 0,
-							'email' => "The email id exists already. Please enter a different email id or login."
 							);
+						// if mobile exists, set the message.
+						if ( $mobile_exists)
+							$response['mobileno'] = 'The mobile number exists already.';
+						// if email exists, set the message.
+						if ( $email_exists)
+							$response['email'] = 'The email id exists already.';
 					}
 					
 				}

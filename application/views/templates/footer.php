@@ -15,6 +15,7 @@
 				<script type="text/javascript" src="<?php echo base_url(); ?>/assets/js/jquery.js"></script>
 				<script type="text/javascript" src="<?php echo base_url(); ?>/assets/bootstrap/js/bootstrap.min.js"></script>
 				<script type="text/javascript" src="<?php echo base_url(); ?>/assets/js/jquery.validate.js"></script>
+				<script type="text/javascript" src="<?php echo base_url(); ?>/assets/js/validate_error_custom.js"></script>
 				<script type="text/javascript" src="<?php echo base_url(); ?>/assets/js/login.js"></script>
 				<script type="text/javascript" src="<?php echo base_url(); ?>/assets/js/register.js"></script>
 			</body>

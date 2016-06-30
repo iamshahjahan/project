@@ -14,7 +14,11 @@
                         <div class="col-sm-8">
                             <input type="email" class="form-control" id="email" name="email" placeholder="Email" required autofocus>
                         </div>
-                        <span id="email_error"></span>
+                        
+                    </div>
+
+                    <div class="row">
+                        <div  class="col-sm-offset-2" id="email_error"></div>
                     </div>
                     <!-- enter your password -->
                     <div class="form-group">
@@ -22,12 +26,16 @@
                         <div class="col-sm-8">
                             <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                         </div>
-                        <span id="password_error"></span>
+
+                    </div>
+
+                    <div class="row">
+                        <div  class="col-sm-offset-2" id="password_error"></div>
                     </div>
                     <!-- sign in button is here. -->
-                    <span id="form_error" class="col-sm-offset-2">
-                        <!-- <p>Some thing is here.</p> -->
-                    </span>
+                    <div class="row">
+                        <div  class="col-sm-offset-2" id="form_error"></div>
+                    </div>
                     <br>
 
                     <div class="form-group">
@@ -40,9 +48,43 @@
                 <div class="pull-right">
                     <a href="register"><button class="btn btn-defualt" id="register">Register</button></a>
 
-                    <a href="forgot"><button class="btn btn-defualt" id="forgotpassword">Forgot Password</button></a>
+                    <button class="btn btn-defualt" data-toggle="modal" data-target="#forgotpasswordModal" id="forgotpassword">Forgot Password</button>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="forgotpasswordModal" tabindex="-1" role="dialog" aria-labelledby="forgotpasswordLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="forgotpasswordLabel">Forgot your password?</h4>
+            </div>
+        <!-- modal body  -->
+            <div class="modal-body">
+                <form class="form-horizontal" method="POST" id="forgotpassword_form" action="forgotpassword">
+                    <!-- name goes here. -->
+                    <div class="form-group">
+                        <label for="forgotpassword_email" class="col-sm-2 control-label">Email</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="forgotpassword_email" name="forgotpassword_email" placeholder="Enter your email id here." required autofocus>
+                        </div>
+                    </div> 
+
+                     <div class="row">
+                        <div  class="col-sm-offset-2" id="forgotpassword_error"></div>
+                    </div>
+            </div>
+                <!-- footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" name="submit" class="btn btn-success">Send Link</button>
+                </div>
+             </form>
         </div>
     </div>
 </div>

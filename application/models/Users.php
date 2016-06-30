@@ -38,7 +38,7 @@
 
 		function add_hash($data)
 		{
-			$statement = $this->conn_id->prepare("update users set hash_key  = :hash_id where email = :email_id");///////////////
+			$statement = $this->conn_id->prepare("update users set hash_key  = :hash_id where email = :email_id");
 			return $statement->execute(array(':hash_id' => $data[1],':email_id' => $data[0]));
 		}
 

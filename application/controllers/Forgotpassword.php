@@ -11,79 +11,88 @@ class Forgotpassword extends CI_Controller {
 
 	function index()
 	{
-		if (isset($_POST['submit']))
+		if (isset($_POST['forgotpassword_email']))
 		{
 				// setting the rules for form_validation using codeigniter
 
-			$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|xss_clean');
+			$this->form_validation->set_rules('forgotpassword_email', 'Email', 'trim|required|valid_email|xss_clean');
 
 				// running form_validation methods
+
+			// initializa a response array
+			$response = array();
+			$response['success'] = 0;
 
 			if ($this->form_validation->run() == TRUE)
 			{
 
-				$email = $_POST['email'];
+				$email = $_POST['forgotpassword_email'];
 			 		// generating a random hash key for the activation of the link.
-				if($this->Users->userexist('email',$email))
+				if($name = $this->Users->userexist('email',$email))
 				{
 					$hash_key = md5(rand(1,100000));
 					$data = array($email,$hash_key);
+
 					if($this->Users->add_hash($data) == TRUE)
 					{
-						if ($this -> send_reset_mail($this->Users->userexist($email),$email,$hash_key))
+						if ($this -> send_reset_mail($name,$email,$hash_key))
 						{
-							echo "Password reset mail has been sent to your email at ".$email;
+							$response['success'] = 1;							
 						}
 						else
 						{
-							echo "Something went wrong while sending you a mail.";
+							$response['message'] = "Unable to send email. Please try later.";
 						}
 					}
 					else
 					{
-						echo "Something went wrong while generating hash.";
+						$response['message'] = "Unable to generate hash key. Please contact web admin.";
 					}
 				}
 				else
 				{
-					echo 'We could not find your email. Please ';
-					echo '<a href="register">Register</a>.';
+					$response['message'] = "Your email doesn't exist.";
 				}
 			}
 
 			else
 			{
-				$this->load->view('forgotpassword');
+				// unable to validate. Enter some errors.
+				$response['message'] = form_error('forgotpassword_email');
 			}
 
 		}
+		// not a post requests
 		else
 		{
-			$this->load->view('forgotpassword');
+			$response['message'] = "Not a valid request.";
+			
 		}
+
+		echo json_encode($response);
 
 	}
 	function send_reset_mail($username,$address,$hash_key)
-		{
+	{
 			// first create the link to be send to the user.
-			$link = site_url() . '/resetpass?email='.$address.'&key='. $hash_key;
+		$link = site_url() . '/resetpass?email='.$address.'&key='. $hash_key;
 
 			// subject to be send at the particular email ids
-			$subject = 'Please reset your password for project.com';
+		$subject = 'Please reset your password for project.com';
 			// message in which the link will be mentioned
 
-			$message = 'Hi '.$username.'! Welcome to the project.com. Please reset your password by clicking the link: '.$link;
+		$message = 'Hi '.$username.'! Welcome to the project.com. Please reset your password by clicking the link: '.$link;
 
-			$result = $this->email
-			->from('jamiamentors@gmail.com')
-			->to($address)
-			->subject($subject)
-			->message($message)
-			->send();
+		$result = $this->email
+		->from('jamiamentors@gmail.com')
+		->to($address)
+		->subject($subject)
+		->message($message)
+		->send();
 
-            return $result;
+		return $result;
 
-		}
+	}
 
 }
 
