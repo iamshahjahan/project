@@ -64,8 +64,8 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="forgotpasswordLabel">Forgot your password?</h4>
             </div>
-        <!-- modal body  -->
-            <div class="modal-body">
+            <!-- modal body  -->
+            <div class="modal-body" id="forgotpassword_modal_body">
                 <form class="form-horizontal" method="POST" id="forgotpassword_form" action="forgotpassword">
                     <!-- name goes here. -->
                     <div class="form-group">
@@ -75,16 +75,16 @@
                         </div>
                     </div> 
 
-                     <div class="row">
+                    <div class="row">
                         <div  class="col-sm-offset-2" id="forgotpassword_error"></div>
                     </div>
-            </div>
+                </div>
                 <!-- footer -->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <button type="submit" name="submit" class="btn btn-success">Send Link</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                 </div>
-             </form>
+            </form>
         </div>
     </div>
 </div>

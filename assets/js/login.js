@@ -25,13 +25,18 @@ $(document).ready(function () {
                 dataType : 'json',
                 success: function(data) 
                 {
-
+                    console.log("success.")
                     $('#forgotpassword_error').empty();
 
                     if (data.success)
                     {
-                        // email was ok.
-                        console.log("success");
+                        $('#forgotpassword_error').html(
+                            '<div class="alert alert-success col-sm-8">Email has been sent. Please reset your password.</div><br>');  
+
+                        setTimeout(function(){
+                            $('#forgotpassword_error').empty();
+                            $('#forgotpasswordModal').modal('hide');
+                        },3000);
 
                     }
                     else 
