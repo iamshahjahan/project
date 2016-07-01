@@ -22,7 +22,7 @@
  		{
 				if($this->Users->reset_pass($this->input->post('email'),md5($this->input->post('password'))))//md5 should be applied at view confirmpass for security
 				{
-					$this->Users->add_hash(array($this->input->post('email'),'NULL'));//so that link expires->string 'NULL'
+					$this->Users->add_hash(array($this->input->post('email'),md5(rand(1,1000000))));//so that link expires->string 'NULL'
 					$response['success'] = 1;
 				}
 				else

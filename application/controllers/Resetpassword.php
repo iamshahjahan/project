@@ -21,7 +21,7 @@
 				$email = $_GET['email'];
 
 
-				if($this->Users->check_hash($hash_key)==TRUE)
+				if($this->Users->check_hash($hash_key) != FALSE)
 				{
 					$this->load->view('templates/header');
 					$this->load->view('resetpassword_view',array('email'=>$email));

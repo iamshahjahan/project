@@ -13,16 +13,44 @@
 
 		function index()
 		{
+			$this->load->view('templates/header');
 			if ( isset($_GET['key']))
 			{
 				$hash_key = $_GET['key'];
-				$this->Users->check_hash_key($hash_key);
+
+				$row = $this->Users->check_hash($hash_key);
+
+				if ($row  != FALSE) 
+				{
+					if ( $row['is_active'] == 1 )
+					{
+						$this->load->view('verified_view',array('message'=>"You are already a verified user"));
+
+					}
+					else
+					{
+						if ( $this->Users->verify_success($row['user_id']) == TRUE )
+						{
+							$this->load->view('verified_view',array('message'=>"Successfully verified"));
+							
+						}
+						else
+						{
+							$this->load->view('verified_view',array('message'=>"Something went wrong"));
+						}
+					}
+				}
+				else
+				{
+					$this->load->view('hash_key_not_found_view');
+				}
 				
 			}
 			else
 			{
-				echo "Something is not working fine here.";
+				$this->load->view('hash_key_not_found_view');
 			}
+			$this->load->view('templates/footer');
 		}
 	}
 
