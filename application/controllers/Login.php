@@ -5,6 +5,11 @@ class Login extends CI_Controller {
 	function __construct()
 	{
 		parent::__construct();
+		if ( is_logged_in())
+		{
+			redirect('home',true);
+		}
+
 	}
 	
 	function index()

@@ -50,10 +50,6 @@
 			$row = $statement->fetch(); 	
 			if (isset($row['user_id']))
 			{
-				// reset the session again.
-
-				var_dump($row);
-
 				return TRUE;
 			}
 			else

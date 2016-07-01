@@ -19,10 +19,12 @@
 			{
 				$hash_key = $_GET['key'];
 				$email = $_GET['email'];
-				echo "hash_key is:" .$hash_key."email is:" .$email;
 				if($this->Users->check_hash($hash_key)==TRUE)
 				{
-					$this->load->view('confirmpass',array('email'=>$email));//////,matches
+					$this->load->view('templates/header');
+					$this->load->view('confirmpass',array('email'=>$email));
+					$this->load->view('templates/footer');
+					
 				}
 				else
 				{
@@ -57,4 +59,4 @@
 			}
 		}
 	}
-?>
+	?>
