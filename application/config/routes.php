@@ -79,5 +79,6 @@ $route['register/upload'] = 'upload';
 
 $route['forgot'] = 'forgotpassword';
 $route['default_controller'] = 'home';
+$route['logout'] = 'home/logout';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

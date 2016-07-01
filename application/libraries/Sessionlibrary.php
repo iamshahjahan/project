@@ -24,6 +24,12 @@
 			$this->CI->session->set_userdata('logged_in', $sess_array);
 			return TRUE;	
 		}	
+
+		function destroy_session()
+		{
+			$this->CI->session->unset_userdata('logged_in');
+			session_destroy();
+		}
 	}
 	
 

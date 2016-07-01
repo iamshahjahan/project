@@ -8,6 +8,7 @@ class Home extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->model('Users');   
 		$this->load->library('Recent_Activity');
+		$this->load->library('Sessionlibrary');
 	}
 	
 	function index()
@@ -19,9 +20,9 @@ class Home extends CI_Controller {
 		 //$data['email'] = $session_data['email'];
 		 $this->load->view('templates/header');//send sess data
 		 $this->load->view('home_view', $session_data);//send sess data
-		 //echo "Recent Question and Answers";
-		 $this->recent_activity->recent_act();
-		 var_dump($this->session->userdata('logged_in'));
+		 // //echo "Recent Question and Answers";
+		 // $this->recent_activity->recent_act();
+		 // var_dump($this->session->userdata('logged_in'));
 		 $this->load->view('templates/footer');//send sess data
 		}
 		else
@@ -29,11 +30,10 @@ class Home extends CI_Controller {
 			redirect('login', 'refresh');
 		}
 	}
-	
+	// moving logout function to session library.
 	function logout()
 	{
-		$this->session->unset_userdata('logged_in');
-		session_destroy();
+		$this->sessionlibrary->destroy_session();
 		redirect('home', 'refresh');
 	}
 	

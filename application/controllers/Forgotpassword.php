@@ -75,7 +75,7 @@ class Forgotpassword extends CI_Controller {
 	function send_reset_mail($username,$address,$hash_key)
 	{
 			// first create the link to be send to the user.
-		$link = site_url() . '/resetpass?email='.$address.'&key='. $hash_key;
+		$link = site_url() . '/resetpassword?email='.$address.'&key='. $hash_key;
 
 			// subject to be send at the particular email ids
 		$subject = 'Please reset your password for project.com';

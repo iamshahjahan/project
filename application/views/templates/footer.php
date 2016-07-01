@@ -20,5 +20,7 @@
 				<script type="text/javascript" src="<?php echo base_url(); ?>/assets/js/register.js"></script>
 
 				<script type="text/javascript" src="<?php echo base_url(); ?>/assets/js/upload.js"></script>
+
+				<script type="text/javascript" src="<?php echo base_url(); ?>/assets/js/resetpassword.js"></script>
 			</body>
 			</html>
