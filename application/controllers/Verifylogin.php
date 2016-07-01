@@ -36,7 +36,8 @@ class VerifyLogin extends CI_Controller
 				{
 						// login is successful.
 					$response = array(
-						'success' => 1, 
+						'success' => 1,
+						'is_active' => (int)$this->session->userdata('logged_in')['is_active'] 
 						);
 
 				}
@@ -75,6 +76,7 @@ class VerifyLogin extends CI_Controller
 
 			$data = array(
 				'user_id' => $result[0]['user_id'],
+				'name' => $result[0]['name'],
 				'email' => $result[0]['email'],  
 				'is_active' => $result[0]['is_active'],  
 				);
