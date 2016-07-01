@@ -50,5 +50,28 @@
  				echo "Unsuccess.";
  			}
  		}
+ 		function count($tag_id)//tag page
+ 		{
+ 			try {
+ 				$sql = $this->conn_id->query("SELECT count(user_id) FROM follows where tag_id=".$tag_id." group by tag_id");
+ 				$row = $sql->fetchALL(PDO::FETCH_ASSOC);
+				if(count($row) > 0)
+ 					return $row[0]['count(user_id)'];
+ 				else
+ 					return 0;
+
+ 			} catch (PDOException $e) {
+
+ 			}
+ 		}
+ 		function get_tags($user_id)
+ 		{
+ 			$query = "SELECT f.user_id, f.tag_id, t.name FROM follows as f ";
+ 			$query .= "inner join tags AS t ON f.tag_id = t.tag_id where f.user_id = ".$user_id;
+ 			$sql = $this->conn_id->prepare($query);
+ 			$sql->execute();
+ 			$r = $sql->fetchALL(PDO::FETCH_ASSOC);
+ 			return $r;
+ 		}
  	}
  	?>
