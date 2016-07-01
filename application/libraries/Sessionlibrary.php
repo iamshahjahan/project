@@ -16,6 +16,7 @@
 		{
 			$sess_array = array(
 				'user_id' => $data['user_id'],
+				'name' => $data['name'],
 				'email' => $data['email'],  
 				'is_active' => $data['is_active']  
 				);

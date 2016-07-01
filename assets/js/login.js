@@ -91,38 +91,81 @@ $(document).ready(function () {
 
                     if (data.success)
                     {
-                        // login is successful. Redirect from here to home.
+                        // if is_active is zero, means user is not activated yet. 
+                        if ( !data.is_active)
+                        {
+                           $('#resend_div').html(
+                            '<div class="alert alert-danger col-sm-8">You have not verified the link sent to you.' +
+                            'Verify the login link sent to you.' +
+                            'Click the button to resend, if you are unable to verify.'+
+                            ' <button class="btn btn-success" id="resend_link">Send</button></div><br>');
+
+
+                       }
+                       else
                         window.location.href = "home";
 
-                    }
-                    else 
+                }
+                else 
+                {
+                    if ( data.message != null )
                     {
-                        if ( data.message != null )
-                        {
-                            $('#form_error').html(
-                                '<div class="alert alert-danger col-sm-8">' + data.message + '</div><br>');
+                        $('#form_error').html(
+                            '<div class="alert alert-danger col-sm-8">' + data.message + '</div><br>');
 
-                        }
-                        else
-                        {
-                          if ( data.email != "" && data.email != null  )
-                             $('#email_error').html(
-                                '<div class="alert alert-danger col-sm-8">' + data.email + '</div><br>');
+                    }
+                    else
+                    {
+                      if ( data.email != "" && data.email != null  )
+                       $('#email_error').html(
+                        '<div class="alert alert-danger col-sm-8">' + data.email + '</div><br>');
 
-                         if ( data.password != "" && data.password != null  )
-                           $('#password_error').html(
-                            '<div class="alert alert-danger col-sm-8">' + data.password + '</div><br>');
+                   if ( data.password != "" && data.password != null  )
+                     $('#password_error').html(
+                        '<div class="alert alert-danger col-sm-8">' + data.password + '</div><br>');
 
-                   }
-               }
-           },
-           error: function(data) {
-               console.log(data);
-           }
-       });
+             }
+         }
+     },
+     error: function(data) {
+         console.log(data);
+     }
+ });
             return false;
         },
     });
+
+
+    $("#resend_div").delegate("#resend_link", "click", function (){
+
+       $('#resend_div').html(
+        '<div class="alert alert-info col-sm-8">Sending link....</div><br>');
+
+       $.ajax
+       ({
+        url: "verifyregister/resend_verification_mail",
+        type:"POST",
+        dataType:"json",
+
+        success: function(data)
+        {
+           if ( data.success )
+           {
+            $('#resend_div').html(
+                '<div class="alert alert-success col-sm-8">Link sent successfully. Please verify.</div><br>');
+        }
+
+    },
+
+    error: function(data)
+    {
+        console.log(data)
+    },
+});
+       return false; 
+
+
+   });
 });
 
 

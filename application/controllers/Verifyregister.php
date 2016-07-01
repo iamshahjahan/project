@@ -71,7 +71,7 @@
 						// a random number for generating links for 
 						$hash_key
 						);
-						
+
 
 
 					// let us check whether email already exists in the table.
@@ -132,7 +132,39 @@
 					);
 			}
 		}
+		function resend_verification_mail()
+		{
+			$username = $this->session->userdata('logged_in')['name'];
+			$email = $this->session->userdata('logged_in')['email'];
+			$hash_key = md5(rand(1,1000000)	);
+			$data = array();
 
+			array_push($data, $email);
+			array_push($data, $hash_key);
+
+			$response['success'] = 0;
+
+
+			// adding hash key to the table
+			if ( $this->Users->add_hash($data) == TRUE )
+			{
+				// let us send the verification key
+				if ($this->send_verification_mail($username,$email,$hash_key))
+				{
+					$response['success'] = 1;
+				}
+				else
+				{
+					$response['message'] = "Unable to send verification mail.";
+				}
+
+			}
+			else
+			{
+				$response['message'] = "Something went wrong. Please contact web admin.";
+			}
+			echo json_encode($response);
+		}
 		function send_verification_mail($username,$address,$hash_key)
 		{
 			// first create the link to be send to the user.

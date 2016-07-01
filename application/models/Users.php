@@ -9,6 +9,7 @@
 		{
 			parent::__construct('users','user_id');
 			$this->load->library('Connections');
+			$this->load->library('Sessionlibrary');
 			// $this->_assign_libraries();
 			$this->conn_id = $this->connections->get_database_object();
 
@@ -49,6 +50,10 @@
 			$row = $statement->fetch(); 	
 			if (isset($row['user_id']))
 			{
+				// reset the session again.
+
+				var_dump($row);
+
 				return TRUE;
 			}
 			else
@@ -85,6 +90,7 @@
 			return $query->execute($data);
 		}
 
+		// change is_active to 1
 		function verify_success($user_id)
 		{
 			$statement = $this->conn_id->prepare("update users set is_active = 1 where user_id = :user_id");
@@ -94,7 +100,7 @@
 
 		function check_hash_key($hash_key)
 		{
-			$statement = $this->conn_id->prepare("select user_id,is_active from users where hash_key = :hash_key");//also check corresponding email
+			$statement = $this->conn_id->prepare("select * from users where hash_key = :hash_key");//also check corresponding email
 			$statement->execute(array(':hash_key' => $hash_key));
 			$row = $statement->fetch(); // Use fetchAll() if you want all results, or just iterate over the statement, since it implements Iterator	
 			if (isset($row['user_id']))
