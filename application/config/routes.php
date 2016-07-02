@@ -73,6 +73,9 @@ $route['register/login'] = 'login';
 $route['register/verifyregister'] = 'verifyregister';
 $route['register/verifyupload'] = 'verifyupload';
 
+
+$route['verifyprofile'] = 'verifyprofile';
+
 $route['register/resend_verification_mail'] = 'verifyregister/resend_verification_mail';
 
 $route['register/upload'] = 'upload';
