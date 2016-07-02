@@ -32,6 +32,7 @@
           {
             ?>
 
+            <li><a href="profile">Profile</a></li>
             <li><a href="logout">Log Out</a></li>
 
             <?php

@@ -31,7 +31,7 @@
 					{
 						if ( $this->Users->verify_success($row['user_id']) == TRUE )
 						{
-							$this->load->view('verified_view',array('message'=>"Successfully verified"));
+							$this->load->view('verified_view',array('message'=>"Successfully verified_view"));
 							
 						}
 						else

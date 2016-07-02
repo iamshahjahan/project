@@ -7,132 +7,138 @@ class Profile extends CI_Controller
 		parent::__construct();
 		$this->load->helper(array('form'));
 		$this->load->library('form_validation');
-				$this->load->model('Users','',TRUE);//args
-				$this->load->library('Recent_Activity');
-				$this->load->model('Follows','',TRUE);
-			}
+		$this->load->model('Users','',TRUE);//args
+		$this->load->library('Recent_Activity');
+		$this->load->model('Follows','',TRUE);
 
-			function index()
-			{
-				$this->load->view('templates/header');
-				$sess_data = $this->session->userdata('logged_in');
-				$limit = 7;
-				if($sess_data)
-				{
-					$data = $this->Users->get($sess_data['user_id']);
-					echo 'logged in';
-					$this->load->view('myprofile_view',$data[0]);//tab1
-				$tgs = $this->Follows->get_tags($sess_data['user_id']);//tags
-				$this->load->view('tag_view',array('tags'=>$tgs));
-				//echo 'Your Public Profile';
-				$this->get($data[0]['user_id']) ;//tab2 includes user recents that public views
-				$tgs = $this->Follows->get_tags($sess_data['user_id']);//same tag_view for public profile
-				$this->load->view('tag_view',array('tags'=>$tgs));
-				$this->load->view('templates/footer');
-
-			}
-			else
-			{
-						//show public profile
-				echo 'not logged in';
-			 // $this->load->view('pubprofile_view',$data[0]);//to be resolved
-
-			}
-		}
-
-		function edit()
+// let us check whether user is logged in or not?	
+		if ( !is_logged_in() )
 		{
-			$sess_data = $this->session->userdata('logged_in');
-			if($sess_data){
-				$data = $this->Users->get($sess_data['user_id'])[0];
+			redirect('home',TRUE);
+		}
+	}
 
-				if (isset($_POST['submit']))
+	function index()
+	{
+		$this->load->view('templates/header');
+		$limit = 7;
+
+
+		// get user id from session
+		$data = $this->Users->get($this->session->userdata('logged_in')['user_id']);
+
+		var_dump($data);
+		// load the profile view.
+		$this->load->view('myprofile_view',$data[0]);
+
+		// get the list of all tags followed by the user.
+		$tgs = $this->Follows->get_tags($this->session->userdata('logged_in')['user_id']);//tags
+		
+		// pass into an array.
+		$this->load->view('tag_view',array('tags'=>$tgs));
+
+		$this->get($data[0]['user_id']) ;
+		$tgs = $this->Follows->get_tags($this->session->userdata('logged_in')['user_id']);//same tag_view for public profile
+		$this->load->view('tag_view',array('tags'=>$tgs));
+		$this->load->view('templates/footer');
+
+		
+		
+	}
+
+	function edit()
+	{
+		$sess_data = $this->session->userdata('logged_in');
+		if($sess_data){
+			$data = $this->Users->get($sess_data['user_id'])[0];
+
+			if (isset($_POST['submit']))
+			{
+					// setting the rules for form_validation using codeigniter
+
+				$this->form_validation->set_rules('name', 'Name', 'required|min_length[1]');
+
+				$this->form_validation->set_rules('mobileno', 'Mobile ', 'required|exact_length[10]');
+
+				$this->form_validation->set_rules('about', 'Name', 'trim');
+
+
+					// running form_validation methods
+
+				if ($this->form_validation->run() == TRUE)
 				{
-						// setting the rules for form_validation using codeigniter
 
-					$this->form_validation->set_rules('name', 'Name', 'required|min_length[1]');
+					$name = $_POST['name'];
+					$mob = $_POST['mobileno'];
+					$about = $_POST['about'];
 
-					$this->form_validation->set_rules('mobileno', 'Mobile ', 'required|exact_length[10]');
-
-					$this->form_validation->set_rules('about', 'Name', 'trim');
-
-
-						// running form_validation methods
-
-					if ($this->form_validation->run() == TRUE)
+					if($this->Users->save(array($name,$mob,$about,$data['user_id'])))
 					{
-
-						$name = $_POST['name'];
-						$mob = $_POST['mobileno'];
-						$about = $_POST['about'];
-
-						if($this->Users->save(array($name,$mob,$about,$data['user_id'])))
-						{
-							echo 'Changes saved';
-						}
-						else
-						{
-							echo "Error saving changes";
-						}
+						echo 'Changes saved';
 					}
 					else
 					{
-						//redirect("profile",'refresh');    
-						$this->load->view('myprofile_view',$data);
+						echo "Error saving changes";
 					}
-
 				}
 				else
 				{
-					echo "Unable to save";
+					//redirect("profile",'refresh');    
+					$this->load->view('myprofile_view',$data);
 				}
+
 			}
 			else
 			{
-				//show public profile
-				echo 'not logged in';
-				$this->load->view('profile_view'); 
+				echo "Unable to save";
 			}
 		}
-
-		function changepass()
+		else
 		{
-			$sess_data = $this->session->userdata('logged_in');
-			if($sess_data){
-				$data = $this->Users->get($sess_data['user_id'])[0];
+			//show public profile
+			echo 'not logged in';
+			$this->load->view('profile_view'); 
+		}
+	}
 
-				if (isset($_POST['submit']))
+	function changepass()
+	{
+		$sess_data = $this->session->userdata('logged_in');
+		if($sess_data){
+			$data = $this->Users->get($sess_data['user_id'])[0];
+
+			if (isset($_POST['submit']))
+			{
+				$this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean');
+				if ($this->form_validation->run() == TRUE)
 				{
-					$this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean');
-					if ($this->form_validation->run() == TRUE)
+					$result = $this->Users->login($data['email'], $_POST['password']);
+					if($result)
 					{
-						$result = $this->Users->login($data['email'], $_POST['password']);
-						if($result)
-						{
-							$this->load->view('confirmpass',array('email'=>$data['email']));
-						}
-						else
-						{
-							echo "unable to verify";
-						}
+						$this->load->view('confirmpass',array('email'=>$data['email']));
 					}
 					else
 					{
-						$this->load->view('changepass_view',array('email'=>$data['email']));//check
+						echo "unable to verify";
 					}
-				}//first time load this view
-				else
-				{ 
-					$this->load->view('changepass_view',array('email'=>$data['email']));
 				}
-			}
+				else
+				{
+					$this->load->view('changepass_view',array('email'=>$data['email']));//check
+				}
+			}//first time load this view
 			else
-			{
-				//show public profile
-				echo 'not logged in';
-				$this->load->view('login_view'); 
+			{ 
+				$this->load->view('changepass_view',array('email'=>$data['email']));
 			}
 		}
+		else
+		{
+			//show public profile
+			echo 'not logged in';
+			$this->load->view('login_view'); 
+		}
+	}
 
 	 //  /* 
 	 //  * show user specific recent activities if 'loggedin' session set,or _arg$1 else global recent
@@ -218,14 +224,14 @@ class Profile extends CI_Controller
 	 	if($data!=0)
 	 	{
 	 		$this->load->view('pubprofile_view',$data[0]);
-	 		$tgs = $this->Follows->get_tags($u_id);//tags
-	 		$this->load->view('tag_view',array('tags'=>$tgs));    
-	 		$this->recent_activity->recent_act($u_id,$limit);
-	 	}
-	 	else
-	 	{
-	 		echo "User does not exist";
-	 	}
-	 }
+			$tgs = $this->Follows->get_tags($u_id);//tags
+			$this->load->view('tag_view',array('tags'=>$tgs));    
+			$this->recent_activity->recent_act($u_id,$limit);
+		}
+		else
+		{
+			echo "User does not exist";
+		}
 	}
-	?>
+}
+?>

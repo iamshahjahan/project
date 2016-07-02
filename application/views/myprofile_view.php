@@ -25,13 +25,6 @@
 		<label> "  <?php echo $is_active?"YES":"NO"; ?>"</label>
 		<br>
 
-	    <!--label>Password</label>
-		<input type="password" name="password" value="<?php echo $name; ?>">
-		<br>
-
-		<label>Confirm Password</label>
-		<input type="password" name="confirm_password">
-		<br-->
 
 		<button type="submit" name="submit">Save</button>
 

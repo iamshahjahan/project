@@ -51,7 +51,7 @@ class Verifyupload extends CI_Controller {
 				if ( move_uploaded_file($file_tmp,'/var/www/html/project/assets/images/'.$file_name.".".$file_ext) )
 				{
 
-					if($this->Users->setImagePath(array($this->session->userdata('logged_in')['user_id'],$file_name)))
+					if($this->Users->setImagePath(array($this->session->userdata('logged_in')['user_id'],$file_name.".".$file_ext)))
 					{	
 						$response['success'] = 1;
 					}
