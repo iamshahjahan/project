@@ -40,7 +40,7 @@
 				}
 				else
 				{
-					echo "I am here.";
+					// echo "I am here.";
 				}
 			}
 			catch(PDOException $e)

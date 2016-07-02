@@ -1,4 +1,4 @@
-				<div class="navbar navbar-inverse navbar-fixed-bottom">
+				<div class="navbar navbar-inverse">
 					<div class="container">
 						<p class="navbar-text pull-left">© 2014 - Site Built By Shiza
 						</p>
@@ -24,5 +24,6 @@
 				<script type="text/javascript" src="<?php echo base_url(); ?>/assets/js/resetpassword.js"></script>
 
 				<script type="text/javascript" src="<?php echo base_url(); ?>/assets/js/my_profile.js"></script>
+				<script type="text/javascript" src="<?php echo base_url(); ?>/assets/js/follow.js"></script>
 			</body>
 			</html>

@@ -41,8 +41,10 @@
 				}
 				else
 				{
-					var_dump($result);
+					// var_dump($result);
+					$this->load->view('templates/header');
 					$this->load->view('tag_details',$data);
+					$this->load->view('templates/footer');
 
 				}
 			}

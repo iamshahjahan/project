@@ -76,7 +76,7 @@ $query_builder = TRUE;
 $db['pdo'] = array(
 
 	// this value is changed for the pdo uses.
-	'dsn'	=> 'mysql:host=localhost;dbname=project',
+	'dsn'	=> 'mysql:host=127.0.0.1	;dbname=project',
 	// 'hostname' => 'localhost',
 	'username' => 'root',
 	'password' => 'khan',

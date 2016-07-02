@@ -32,73 +32,24 @@ class Profile extends CI_Controller
 		$this->load->view('myprofile_view',$data[0]);
 
 		// get the list of all tags followed by the user.
-		$tgs = $this->Follows->get_tags($this->session->userdata('logged_in')['user_id']);//tags
+		$tags = $this->Follows->get_tags($this->session->userdata('logged_in')['user_id']);//tags
 		
 		// pass into an array.
-		$this->load->view('tag_view',array('tags'=>$tgs));
+		$this->load->view('tag_view',array('tags'=>$tags));
 
-		$this->get($data[0]['user_id']) ;
-		$tgs = $this->Follows->get_tags($this->session->userdata('logged_in')['user_id']);//same tag_view for public profile
-		$this->load->view('tag_view',array('tags'=>$tgs));
+		// $this->get($data[0]['user_id']) ;
+		// $tags = $this->Follows->get_tags($this->session->userdata('logged_in')['user_id']);//same tag_view for public profile
+		// $this->load->view('tag_view',array('tags'=>$tags));
+		// get the current user profile.
+
+		$this->recent_activity->recent_act($this->session->userdata('logged_in')['user_id'],$limit);
+
+
+
 		$this->load->view('templates/footer');
 
 		
 		
-	}
-
-	function edit()
-	{
-		$sess_data = $this->session->userdata('logged_in');
-		if($sess_data){
-			$data = $this->Users->get($sess_data['user_id'])[0];
-
-			if (isset($_POST['submit']))
-			{
-					// setting the rules for form_validation using codeigniter
-
-				$this->form_validation->set_rules('name', 'Name', 'required|min_length[1]');
-
-				$this->form_validation->set_rules('mobileno', 'Mobile ', 'required|exact_length[10]');
-
-				$this->form_validation->set_rules('about', 'Name', 'trim');
-
-
-					// running form_validation methods
-
-				if ($this->form_validation->run() == TRUE)
-				{
-
-					$name = $_POST['name'];
-					$mob = $_POST['mobileno'];
-					$about = $_POST['about'];
-
-					if($this->Users->save(array($name,$mob,$about,$data['user_id'])))
-					{
-						echo 'Changes saved';
-					}
-					else
-					{
-						echo "Error saving changes";
-					}
-				}
-				else
-				{
-					//redirect("profile",'refresh');    
-					$this->load->view('myprofile_view',$data);
-				}
-
-			}
-			else
-			{
-				echo "Unable to save";
-			}
-		}
-		else
-		{
-			//show public profile
-			echo 'not logged in';
-			$this->load->view('profile_view'); 
-		}
 	}
 
 	function changepass()
@@ -143,7 +94,7 @@ class Profile extends CI_Controller
 	 //  /* 
 	 //  * show user specific recent activities if 'loggedin' session set,or _arg$1 else global recent
 	 //  */
-	 //  function recent_act($limit=7,$u_id=0)//limit 7 Ques and Ans 
+	 //  function recent_act($limit=7,$user_id=0)//limit 7 Ques and Ans 
 	 //  {
 	 //      $this->load->model('Questions');
 	 //      $this->load->model('Answers');
@@ -219,14 +170,21 @@ class Profile extends CI_Controller
 	 //     // }
 	 // }
 
-	 function get($u_id, $limit = 7 ){//get/load specific profile
-	 	$data = $this->Users->get($u_id);
-	 	if($data!=0)
-	 	{
-	 		$this->load->view('pubprofile_view',$data[0]);
-			$tgs = $this->Follows->get_tags($u_id);//tags
-			$this->load->view('tag_view',array('tags'=>$tgs));    
-			$this->recent_activity->recent_act($u_id,$limit);
+	function get($user_id , $limit = 7 )
+
+	{
+	 	// let us get the profile of a person using his/her user_id
+
+		$data = $this->Users->get($user_id);
+		if($data!=0)
+		{
+	 		// let us show his public profile
+			$this->load->view('pubprofile_view',$data[0]);
+	 		// now show the tags he follows/unfollows
+			$tags = $this->Follows->get_tags($user_id);
+			$this->load->view('tag_view',array('tags'=>$tags));
+		    // let us display his/her recent activities. 
+			$this->recent_activity->recent_act($user_id,$limit);
 		}
 		else
 		{

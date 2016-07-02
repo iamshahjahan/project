@@ -12,10 +12,11 @@
 		}
 		function index()
 		{
-			echo "I am outside isset.";
+			// var_dump($_POST);
 			if ( isset($_POST['tag_id']) && isset($_POST['user_id']))
 			{
-				echo "tag is set.";
+				// echo "tag is set.";
+				$response['success'] = 0;
 
 				$data = array($_POST['tag_id'],$_POST['user_id']);
 
@@ -24,36 +25,25 @@
 					if ( $this->Follows->delete($data))
 					{
 						
-						$json_message = array(
-							'success' => true, 
-							);
-						echo json_encode($json_message);
+						$response['success'] = 1;
+
 					}
 					else
 					{
-						// echo "I am in else.";
-						$json_message = array(
-							'success' => false, 
-							);
-						echo json_encode($json_message);
+						$response['message'] = "Unable to set unfollow option.";
 
 					}
+					
 				}
 				else
 				{
 					if ( $this->Follows->insert($data))
 					{
-						$json_message = array(
-							'success' => true, 
-							);
-						echo json_encode($json_message);
+						$response['success'] = 1;
 					}
 					else
 					{
-						$json_message = array(
-							'success' => false, 
-							);
-						echo json_encode($json_message);
+						$response['message'] = "Unable to set follow option.";
 
 					}
 				}
@@ -61,12 +51,9 @@
 			}
 			else
 			{
-				echo "tags are not set.";
-				$json_message = array(
-					'success' => false, 
-					);
-				echo json_encode($json_message);
+				$response['message'] = "Invalid request.";
 			}
+			echo json_encode($response);
 		}
 	}
 

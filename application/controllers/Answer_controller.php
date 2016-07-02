@@ -72,7 +72,7 @@
 
 					// add in the array if not exists already. 
 
-						if ( !in_array($user_details[0]['email'], $user_email_list))
+						if ( isset($user_details) && !in_array($user_details[0]['email'], $user_email_list))
 							array_push($user_email_list, $user_details[0]['email']);
 						
 					}
