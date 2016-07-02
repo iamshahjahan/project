@@ -40,25 +40,36 @@ $(document).ready(function () {
                         $('#upload_error').html(
                             '<div class="alert alert-success col-sm-8">Image has been uploaded.</div><br>');  
 
-                        setTimeout(function(){
-                            $('#upload_error').empty();
-                            window.location.href = "./login";
-                        },3000);
+                       // let us check whether skip button is there to ensure that it is from upload.php page.
+                       if ( $('#skip_upload').length > 0)
+                       {
+                        // so above check ensures that there is a skip button.
+                            setTimeout(function()
+                            {
+                                $('#upload_error').empty();
+                                window.location.href = "./login";
+                            },3000);
+                        }
+                        // I am in profile_pic page, let us refresh the page after photo upload.
+                        else
+                        {
+                            location.reload();
+                        }
 
-                    }
-                    else 
-                    {
-                        $('#upload_error').html(
-                            '<div class="alert alert-danger col-sm-8">' + data.message + '</div><br>');
-                    }
-                },
-                error: function(data) 
-                {
-                    console.log(data);
-                    $('#upload_error').html(
-                        '<div class="alert alert-danger col-sm-8">Something went wrong.</div><br>');
                 }
-            });
+                else 
+                {
+                    $('#upload_error').html(
+                        '<div class="alert alert-danger col-sm-8">' + data.message + '</div><br>');
+                }
+            },
+            error: function(data) 
+            {
+                console.log(data);
+                $('#upload_error').html(
+                    '<div class="alert alert-danger col-sm-8">Something went wrong.</div><br>');
+            }
+        });
             return false;
         },
     });

@@ -27,7 +27,7 @@ class Profile extends CI_Controller
 		// get user id from session
 		$data = $this->Users->get($this->session->userdata('logged_in')['user_id']);
 
-		var_dump($data);
+		// var_dump($data);
 		// load the profile view.
 		$this->load->view('myprofile_view',$data[0]);
 
