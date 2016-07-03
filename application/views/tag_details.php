@@ -47,30 +47,60 @@
 						?>
 					</div>
 				</form>
-			<h3 class=""><?php if (isset($count_followers)) echo "Total Followers: ". $count_followers ?></h3>
+				<h3 ><?php if (isset($count_followers)) echo "Total Followers: ". $count_followers ?></h3>
 			</div>
 		</div>
 	</div>
 
 
 
+
+	
 	<?php
 
 	// Now we need to get all questions from table related 
-	$i = 0;
+
+
 	if ( isset($questions) && $questions != null)
 	{
+		?>
+		<div class="container">
+			<h1 class="page-header">Questions</h1>
+		<?php
 		var_dump($questions);
 		foreach ($questions as $question) {
 			?>
-			<a href="<?php echo site_url().'/question/get/'.$question['q_id'];?>">
-				<?php  
-				echo $question['title'];
+
+				<div class="row">
+					<div class="col-md-8">
+
+						<div class="jumbotron">
+							<h3 class="header">
+								<a href="<?php echo site_url().'/question/get/'.$question['q_id'];?>">
+									<?php  
+									echo $question['title'];
+									?>
+								</a>
+
+							</h3>
+							<span class="date"><i class="fa fa-clock-o" aria-hidden="true"></i>
+								<?php 
+								echo $question['creation_time'];
+								?>
+							</span>
+							<span class="date"><i class="fa fa-user" aria-hidden="true"></i>
+								
+							<?php echo "<a href=".site_url().'/profile/get/'.$question['user_id'].">".$this->Users->get($question['user_id'])[0]['name']."</a></br>";?>
+							</span>
+
+						</div>
+
+						<?php
+					}
+
+				}
 				?>
-			</a>
 
-			<?php
-		}
-
-	}
-	?>
+			</div>
+		</div>
+	</div>

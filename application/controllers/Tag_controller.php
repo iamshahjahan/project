@@ -11,6 +11,7 @@
 			$this->load->model('Tags');
 			$this->load->model('Follows');
 			$this->load->model('Question_tags');
+			$this->load->model('Users');
 			$this->load->library("session");
 			$this->load->helper("url");
 
@@ -28,7 +29,8 @@
 				$result = $this->Tags->get($tag_id);
 				// let us get all question related to this tag from table.
 				$questions = $this->Question_tags->get_questions_by_tag_id($tag_id);
-				$count_followers = count($this->Follows->get());
+				$count_followers = ($this->Follows->get_followers($tag_id));
+
 
 				$data  = array(
 						'result' => $result,

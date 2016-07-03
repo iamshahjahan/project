@@ -104,6 +104,19 @@ class Profile extends CI_Controller
 	{
 	 	// let us get the profile of a person using his/her user_id
 
+		if ( isset($_GET['page']) && is_numeric($_GET['page']) && $_GET['page'] > 0)
+		{
+			$page = $_GET['page'];
+
+			$offset = $page * 5;
+		}
+		else
+		{
+			$page = 0;
+			$offset = 0;
+
+		}
+
 		$data = $this->Users->get($user_id);
 		if($data!=0)
 		{

@@ -12,11 +12,22 @@
 
  		function get($tag_id = 0,$user_id = 0)
  		{
+
+
  			$sql = $this->conn_id->query("select * from follows where tag_id = '".$tag_id."' and user_id = '".$user_id."' ");
  			if($result = $sql -> fetchAll(PDO::FETCH_ASSOC))
  				return $result;
  			else
  				return 0;
+ 		}
+
+ 		function get_followers($tag_id)
+ 		{
+ 			$sql = "SELECT * FROM follows WHERE tag_id = ".$tag_id; 
+ 			$result = $this->conn_id->prepare($sql); 
+ 			$result->execute(); 
+ 			  
+ 			return count($result->fetchAll()); 
  		}
 
  		function insert($data)
@@ -55,7 +66,7 @@
  			try {
  				$sql = $this->conn_id->query("SELECT count(user_id) FROM follows where tag_id=".$tag_id." group by tag_id");
  				$row = $sql->fetchALL(PDO::FETCH_ASSOC);
-				if(count($row) > 0)
+ 				if(count($row) > 0)
  					return $row[0]['count(user_id)'];
  				else
  					return 0;
