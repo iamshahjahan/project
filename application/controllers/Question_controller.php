@@ -111,8 +111,9 @@
 			}
 			else
 			{
-				// echo ;
+				$this->load->view('templates/header');
 				$this->load->view('question');
+				$this->load->view('templates/footer');
 			}
 		}
 
