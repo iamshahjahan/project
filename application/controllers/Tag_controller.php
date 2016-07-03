@@ -28,11 +28,12 @@
 				$result = $this->Tags->get($tag_id);
 				// let us get all question related to this tag from table.
 				$questions = $this->Question_tags->get_questions_by_tag_id($tag_id);
-
+				$count_followers = count($this->Follows->get());
 
 				$data  = array(
 						'result' => $result,
 						'questions' => $questions,
+						'count_followers' => $count_followers,
 						 );
 				// $data = $result;
 				if ( !$result )

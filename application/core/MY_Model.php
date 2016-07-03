@@ -73,7 +73,7 @@
 		*                       specify field in order_by else '-1',
 		*                       specify $key_id field in which ids are to be searched 
 		*/
-		function get_by_key($key=0,$limit=0,$u_id=0,$order_by='-1',$key_id)
+		function get_by_key($key=0,$limit=0,$offset=0,$u_id=0,$order_by='-1',$key_id)
 		{
 			$sql_query = "select * from ".$this->table_name." ";
 			if(is_array($key) || $u_id!=0)
@@ -109,10 +109,11 @@
 
 			if($limit!=0)
 			{
-				$sql_query = $sql_query." limit ".$limit;
+				$sql_query = $sql_query." limit ".$limit." offset ".$offset;
 			}
 			
-			//echo $sql_query;
+			// echo $sql_query;
+
 			$sql = $this->conn_id->query($sql_query);
 			if($result = $sql -> fetchAll(PDO::FETCH_ASSOC))
 				return $result;

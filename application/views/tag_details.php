@@ -7,54 +7,60 @@
 	$tag_id = $result[0]['tag_id'];
 	
 	?>
-	<form id="follows" method="POST" action="<?php echo site_url();?>/follows">
-		<input type="hidden" id="tag_id" value="<?php echo $result[0]['tag_id'];?>" />
-		<input type="hidden" id="user_id" value="<?php echo $this->session->userdata('logged_in')['user_id'];?>" />
+	<div class="container">
+		<div class="row">
+			<div class="col-md-offset-4">
+				<form id="follows" method="POST" action="<?php echo site_url();?>/follows">
+					<input type="hidden" id="tag_id" value="<?php echo $result[0]['tag_id'];?>" />
+					<input type="hidden" id="user_id" value="<?php echo $this->session->userdata('logged_in')['user_id'];?>" />
 
 
-		
-				<tr>
-					<td><h4><?php echo $result[0]['name']; ?></h4></td> 
-					
+					<div class="col-md-6">
+						
 
 
 
-					<!-- // enter the name of the button -->
 
 
-					<?php 
+						<h4 class="card-title"><a href="<?php echo site_url(); ?>/tag/get/<?php echo $result[0]['tag_id'] ?>">
+							<?php echo $result[0]['name']; ?>
+						</a></h4>
+					</div>
+					<div class="col-md-6">
 
-					if ( $this->Follows->get($result[0]['tag_id'],$this->session->userdata('logged_in')['user_id']) )
-					{
+						<?php 
+
+						if ( $this->Follows->get($result[0]['tag_id'],$this->session->userdata('logged_in')['user_id']) )
+						{
+							?>
+							<p class="card-text"><button id="unfollow" class="btn btn-danger">Un Follow</button></p>
+
+							
+							<?php
+						}
+						else
+						{
+							?>
+							<p class="card-text"><button id="follow" class="btn btn-success">Follow</button></p>
+							<?php
+						}
 						?>
-
-						<td><button id="unfollow" class="btn btn-danger">Un Follow</button></td>
-						<?php
-					}
-					else
-					{
-						?>
-						<td><button id="follow" class="btn btn-success">Follow</button></td>
+					</div>
+				</form>
+			<h3 class=""><?php if (isset($count_followers)) echo "Total Followers: ". $count_followers ?></h3>
+			</div>
+		</div>
+	</div>
 
 
-						<?php
-					}
-					?>
-				</tr>
-
-
-			
-
-	</form>
 
 	<?php
-	
+
 	// Now we need to get all questions from table related 
-	// var_dump($questions);
-	// echo site_url().'/question/get/';
 	$i = 0;
 	if ( isset($questions) && $questions != null)
 	{
+		var_dump($questions);
 		foreach ($questions as $question) {
 			?>
 			<a href="<?php echo site_url().'/question/get/'.$question['q_id'];?>">
@@ -68,4 +74,3 @@
 
 	}
 	?>
-	
