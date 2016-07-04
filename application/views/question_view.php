@@ -24,12 +24,12 @@
 			</div>
 
 			<div class="panel panel-body">
-				<form class="form-horizontal" method="POST" id="question_form" action="verifyquestion">
+				<form class="form-horizontal" method="POST" id="question_form" action="<?php echo site_url(); ?>/verifyquestion">
 					<!-- name goes here. -->
 					<div class="form-group">
 						<label for="name" class="col-sm-2 control-label">Title</label>
 						<div class="col-sm-8">
-							<input type="text" class="form-control" id="title" name="title" placeholder="Title" required autofocus>
+							<input type="text" class="form-control" id="title" name="title" placeholder="Title" autofocus>
 						</div>
 					</div> 
 
@@ -40,7 +40,7 @@
 					<div class="form-group">
 						<label for="email" class="col-sm-2 control-label">Description</label>
 						<div class="col-sm-8">
-							<input type="text" class="form-control" id="description" name="description" placeholder="Description" required autofocus>
+							<textarea class="form-control" id="description" name="description" placeholder="Description" autofocus></textarea>
 						</div>
 					</div>
 					<div class="row">
@@ -51,11 +51,11 @@
 					<div class="form-group">
 						<label for="tags" class="col-sm-2 control-label">Tags</label>
 						<div class="col-sm-8" id="tags">
-							<input type="text" class="form-control" id="tag1" name="tag1" placeholder="tag" required autofocus>
+							<input type="text" class="form-control" id="tag1" name="tag1" placeholder="tag" autofocus>
 						</div>
 					</div> 
 					<div class="row">
-						<div  class="col-sm-offset-2" id="tag_error" ></div>
+						<div  class="col-sm-offset-2" id="tag1_error" ></div>
 					</div>
 
 
@@ -67,7 +67,7 @@
 
 					<!-- <p>Some thing is here.</p> -->
 					<div class="row">
-						<div  class="col-sm-offset-2" id="form_error" ></div>
+						<div  class="col-sm-offset-2" id="question_form_error" ></div>
 					</div>
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-8">

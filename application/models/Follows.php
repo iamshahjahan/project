@@ -7,7 +7,7 @@
  		
  		function __construct()
  		{
- 			parent::__construct('follows','');
+ 			parent::__construct('follows','user_id');
  		}
 
  		function get($tag_id = 0,$user_id = 0)
@@ -23,8 +23,8 @@
 
  		function get_followers($tag_id)
  		{
- 			$sql = "SELECT * FROM follows WHERE tag_id = ".$tag_id; 
- 			$result = $this->conn_id->prepare($sql); 
+ 			$sql = "SELECT * FROM follows WHERE tag_id = ".$tag_id;  
+			$result = $this->conn_id->prepare($sql); 
  			$result->execute(); 
  			  
  			return count($result->fetchAll()); 

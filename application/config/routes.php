@@ -53,7 +53,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 // this route routes the register page
 $route['email'] = 'sendMail/sendMail';
 $route['question'] = 'question_controller';
+
 $route['question/get'] = 'question_controller/get';
+
 $route['question/get/(:num)'] = 'question_controller/get/$1';
 //$route['profile/get/(:num)'] = 'profile/recent_act/$1';
 
@@ -64,8 +66,7 @@ $route['tag/get'] = 'tag_controller/get';
 $route['tag/get/(:num)'] = 'tag_controller/get/$1';
 
 
-$route['answer'] = 'answer_controller';
-$route['answer/post_answer'] = 'answer_controller/post_answer';
+$route['answer'] = 'verifyanswer';
 $route['verifyemail'] = 'verifyemail';
 
 $route['register'] = 'register';
@@ -75,6 +76,7 @@ $route['register/verifyupload'] = 'verifyupload';
 
 
 $route['verifyprofile'] = 'verifyprofile';
+$route['verifyquestion'] = 'verifyquestion';
 
 $route['register/resend_verification_mail'] = 'verifyregister/resend_verification_mail';
 

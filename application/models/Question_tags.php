@@ -15,7 +15,7 @@
 			try
 			{
 				// $tags - array of tag ids
-				$sql = $this->conn_id->prepare("INSERT INTO question_tags(tag_id, q_id) VALUES (?, ?) desc");
+				$sql = $this->conn_id->prepare("INSERT INTO question_tags(tag_id, q_id) VALUES (?, ?)");
 				$sql->execute(array($tag_id, $q_id));
 				return 1;
 			}

@@ -1,35 +1,60 @@
-$('#answer_submit').click(function (e) 
-{
-	console.log("I am in post answer.");
-	var answer = $('#answer').val();
-	var q_id = $('#q_id').val();
-	var user_id = $('#user_id').val();
-
-	// now make ajax call
-
-	$.ajax
-	({
-		type: "POST",
-		url : $('#post_answer').attr('action'),
-		data:{answer:answer,q_id:q_id,user_id:user_id},
+$(document).ready(function () {
+	highlight_errors_validate();
 
 
-		success:function(response)
-		{
-			if ( response.success )
-			{
-				// the answer is added successfully. 
-			}
-				// location.reload();
-			console.log(response)
-		},
-		error:function(response)
-		{
-			console.log(response)
-		}
+    // Setup form validation on the #register-form element
+    $("#answer_form").validate({
+        // Specify the validation rules
+        rules: {
+        	answer: {
+        		required: true,
+        		minlength: 50
+        	}
+        },
+        
+        // Specify the validation error messages
+        messages: {
+        	answer: "Please enter at least 50 characters.",
+        },
+        
+        submitHandler: function(form) {
+        	$.ajax({  
+        		type: 'POST',
+        		url: $(form).attr('action'),
+        		data: $(form).serialize(),
+        		dataType : 'json',
+        		success: function(data) {
+
+        			$('#answer_error').empty();
 
 
-	});
+        			if (data.success)
+        			{
+						location.reload();             
+        			}
+        			else 
+        			{
+        				if ( data.message != null )
+        				{
+        					$('#answer_error').html(
+        						'<div class="alert alert-danger col-sm-8">' + data.message + '</div><br>');
 
-	e.preventDefault();
+        				}
+        				
+        			}
+        		},
+        		error: function(data) {
+        			console.log(data);
+        		}
+        	});
+        	return false;
+        },
+    });
+
+
+
 });
+
+
+
+

@@ -24,14 +24,13 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
           <li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
-          <li><a href="#">About</a></li>
-          
 
           <?php 
           if ( is_logged_in() )
           {
             ?>
 
+            <li><a href="question">Add a question</a></li>
             <li><a href="profile">Profile</a></li>
             <li><a href="logout">Log Out</a></li>
 

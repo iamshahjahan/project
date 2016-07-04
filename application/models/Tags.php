@@ -29,7 +29,6 @@
 		{
 			$sql = $this->conn_id->query("select * from tags WHERE name = '".$tag."'");
 			$r = $sql->fetchALL(PDO::FETCH_ASSOC);
-			print_r($r);
 			if(count($r) > 0)
 				return $r[0]['tag_id'];
 			else
