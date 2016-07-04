@@ -85,7 +85,10 @@
 			}
 			else
 			{
-				var_dump($this->Questions->get());
+				$this->load->view('templates/header');
+				$this->load->view('verified_view',array('message' => 'The page doesn\'t exist'));
+				$this->load->view('templates/footer');
+				
 			}
 		}
 	}

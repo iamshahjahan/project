@@ -30,7 +30,8 @@ $(document).ready(function () {
 
         			if (data.success)
         			{
-						location.reload();             
+                        console.log(data);
+						// location.reload();             
         			}
         			else 
         			{

@@ -95,6 +95,7 @@ class Verifyquestion extends CI_Controller {
 								if($request[0] == 1) // if tags inserted.
 								{
 									$tag_id = $request[1];
+
 								}
 							}
 							if($this->Question_tags->insert($q_id, $tag_id))
