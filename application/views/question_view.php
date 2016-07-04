@@ -1,20 +1,3 @@
-<!-- 
-<label>Title</label>
-<input type="text" name="title">
-<br>
-<label>Description</label>
-<input type="text" name="description">
-<br>
-<div id="tags">	
-	<label>Tags</label>
-	<input type="text" name="tag1">
-	<br>
-</div>
-<button id="addTag">add</button>
-<button type="submit" name="submit">POST</button>
-</form>
-<script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery.js"></script>
--->
 <div class="row">
 	<div class="col-sm-offset-3 col-sm-6">
 
@@ -61,7 +44,7 @@
 
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-8">
-							<button class="btn btn-info" id="addTag">Add Tags</button>
+							<div class="btn btn-info" id="addTag">Add More Tags</div>
 						</div>
 					</div>
 

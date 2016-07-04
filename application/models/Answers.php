@@ -10,9 +10,10 @@
 			parent::__construct('answers','a_id');
 		}
 
-		function get_by_question_id($q_id)
+		function get_by_question_id($q_id,$offset =0,$limit=0)
 		{
-			$sql = $this->conn_id->query("select * from answers where q_id = '".$q_id."'");
+			$sql = $this->conn_id->query("select * from answers where q_id = '".$q_id."' order by answer_time desc limit ".$limit." offset ".$offset);
+
 			if($result = $sql -> fetchAll(PDO::FETCH_ASSOC))
 				return $result;
 			else

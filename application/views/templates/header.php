@@ -30,17 +30,17 @@
           {
             ?>
 
-            <li><a href="question">Add a question</a></li>
-            <li><a href="profile">Profile</a></li>
-            <li><a href="logout">Log Out</a></li>
+            <li><a href="<?php echo site_url();?>/question">Add a question</a></li>
+            <li><a href="<?php echo site_url();?>/profile">Profile</a></li>
+            <li><a href="<?php echo site_url();?>/logout">Log Out</a></li>
 
             <?php
           }
           else
           {
             ?>
-            <li><a href="login">Sign In</a></li>
-            <li><a href="register">Sign Up</a></li>
+            <li><a href="<?php echo site_url();?>/login">Sign In</a></li>
+            <li><a href="<?php echo site_url();?>/register">Sign Up</a></li>
 
             <?php
           }

@@ -70,17 +70,20 @@
 
 						$answer_details = $this->Answers->get_by_question_id($_POST['q_id']);
 					// $i = 0;
-						foreach ($answer_details as $answer) 
+						if ($answer_details )
 						{
+							foreach ($answer_details as $answer) 
+							{
 						// check whether current user email id is there.
-							if ( $answer['user_id'] != $_POST['user_id'])
-								$user_details = $this->Users->get($answer['user_id']);
+								if ( $answer['user_id'] != $_POST['user_id'])
+									$user_details = $this->Users->get($answer['user_id']);
 
 					// add in the array if not exists already. 
 
-							if ( isset($user_details) && !in_array($user_details[0]['email'], $user_email_list))
-								array_push($user_email_list, $user_details[0]['email']);
+								if ( isset($user_details) && !in_array($user_details[0]['email'], $user_email_list))
+									array_push($user_email_list, $user_details[0]['email']);
 
+							}
 						}
 
 					// now send mail to each and every person.

@@ -13,8 +13,8 @@
 
 
 				<script type="text/javascript" src="<?php echo base_url(); ?>/assets/js/jquery.js"></script>
-				<script type="text/javascript" src="<?php echo base_url();?>assets/js/question.js"></script>
 				<script type="text/javascript" src="<?php echo base_url();?>assets/js/add_answer.js"></script>
+				<script type="text/javascript" src="<?php echo base_url();?>assets/js/question.js"></script>
 				<script type="text/javascript" src="<?php echo base_url(); ?>/assets/bootstrap/js/bootstrap.min.js"></script>
 				<script type="text/javascript" src="<?php echo base_url(); ?>/assets/js/jquery.validate.js"></script>
 				<script type="text/javascript" src="<?php echo base_url(); ?>/assets/js/validate_error_custom.js"></script>

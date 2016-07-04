@@ -127,10 +127,15 @@ class Recent_Activity extends CI_Model{
 					// let us load the view with the data.
 					$this->load->view(
 						'recent_act',array(
-							'finaldata'=>$final_data,
-							'total_results' => $total_results,
-							'offset' => $offset
+							'finaldata'=>$final_data
 							));
+
+					$this->load->view('pagination_view',
+						array(
+						'total_results' => $total_results,
+						'offset' => $offset,
+						'page_name' => 'profile')
+						);
 				}
 			}
 		}
