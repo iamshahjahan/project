@@ -31,7 +31,7 @@ $(document).ready(function () {
         			if (data.success)
         			{
                         console.log(data);
-						// location.reload();             
+						location.reload();             
         			}
         			else 
         			{

@@ -51,6 +51,7 @@
 
 		</div>
 		<?php 
+		// var_dump($answers);f
 		if ( ($answers))
 		{
 			foreach ( $answers as $answer )

@@ -16,6 +16,11 @@
 			$this->load->model('Questions');
 			$this->load->model('Answers');
 			$this->load->model('Users');
+
+			if ( !is_logged_in() )
+			{
+				redirect('login',TRUE);
+			}
 		}
 
 		function index()
@@ -48,7 +53,7 @@
 				$result = $this->Questions->get($q_id);
 				
 				// ge all answers to the above questions.
-				$total_results = count($this->Answers->get());
+				$total_results = ($this->Answers->get_count_question_id($q_id));
 
 				$answers = $this->Answers->get_by_question_id($q_id,$offset,$limit = 5);
 				
@@ -79,7 +84,6 @@
 					$this->load->view('templates/header',$data);
 					$this->load->view('question_details',$data);
 					$this->load->view('templates/footer',$data);
-
 					// var_dump($result);
 				}
 			}

@@ -19,6 +19,17 @@
 			else
 				return 0;
 		}
+
+		function get_count_question_id($q_id)
+		{
+			$sql = "select count(*) from answers where q_id = '".$q_id."'";
+
+			$result = $this->conn_id->prepare($sql); 
+			$result->execute(); 
+			return $result->fetchColumn();
+		}
+
+
 		
 		function insert($data)
 		{

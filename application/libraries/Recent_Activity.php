@@ -17,16 +17,13 @@ class Recent_Activity extends CI_Model{
 		$ques = $this->Questions->get_by_key(0,$limit,$offset,$u_id,'creation_time','q_id');
 
 			// var_dump($ques);
-		$count_questions = count($this->Questions->get_by_key(0,0,0,$u_id,'creation_time','q_id'));
-		$count_answers = count($this->Answers->get_by_key(0,0,0,$u_id,'answer_time','a_id'));
-
 			// it means we have some questions.
 		$ans = $this->Answers->get_by_key(0,$limit,$offset,$u_id,'answer_time','a_id');
 		$final_data = array();
 
 
-		// total results, will be used for pagination.
-		$total_results = $count_questions + $count_answers;
+		
+
 
 		if($ques!=0)
 		{
@@ -130,12 +127,6 @@ class Recent_Activity extends CI_Model{
 							'finaldata'=>$final_data
 							));
 
-					$this->load->view('pagination_view',
-						array(
-						'total_results' => $total_results,
-						'offset' => $offset,
-						'page_name' => 'profile')
-						);
 				}
 			}
 		}

@@ -7,7 +7,6 @@
 				// var_dump($finaldata);
 				foreach($finaldata as $row) {
 					?>
-
 					<li class="well" style="display: list-item;">
 						<?php 
 						if(isset($row['answer_time']))
@@ -26,7 +25,17 @@
 
 
 							<span class="name">
-								Asked by: <?php echo "<a href=".site_url().'/profile/get/'.$row['q_u_id'].">".$row['qauthor']."</a></br>";?>
+								Asked by:
+
+								 <?php 
+
+								 if ( $row['q_u_id'] != $this->session->userdata('logged_in')['user_id'])
+								  echo "<a href=".site_url().'/profile/get/'.$row['q_u_id'].">".$row['qauthor']."</a></br>";
+								else
+								{
+									echo "You";
+								}
+								?>
 							</span>
 							<span class="separator">•</span>
 							<span class="date"><i class="fa fa-clock-o" aria-hidden="true"></i>
@@ -34,24 +43,35 @@
 								echo $row['creation_time'];
 								?>
 							</span>
+							<hr/>
+							<div class="well">
+								<div class="header">
+									<?php
+									echo $row['answer_text'];
+									?>
+								</div>
 
 
-							<div class="header">
-								<?php
-								echo $row['answer_text'];
-								?>
+								<span class="name">
+									Answered by:
+
+									 <?php 
+
+									 if ( $row['user_id'] != $this->session->userdata('logged_in')['user_id'])
+									  echo "<a href=".site_url().'/profile/get/'.$row['user_id'].">".$row['aauthor']."</a></br>";
+									else
+									{
+										echo "You";
+									}
+									?>
+								</span>
+								<span class="separator">•</span>
+								<span class="date"><i class="fa fa-clock-o" aria-hidden="true"></i>
+									<?php 
+									echo $row['answer_time'];
+									?>
+								</span>
 							</div>
-
-
-							<span class="name">
-								Answered by you.
-							</span>
-							<span class="separator">•</span>
-							<span class="date"><i class="fa fa-clock-o" aria-hidden="true"></i>
-								<?php 
-								echo $row['answer_time'];
-								?>
-							</span>
 
 							<?php
 						} 
@@ -72,7 +92,17 @@
 
 
 							<span class="name">
-								Asked by you.
+								Asked by:
+
+								 <?php 
+
+								 if ( $row['user_id'] != $this->session->userdata('logged_in')['user_id'])
+								  echo "<a href=".site_url().'/profile/get/'.$row['user_id'].">".$row['aauthor']."</a></br>";
+								else
+								{
+									echo "You";
+								}
+								?>
 							</span>
 							<span class="separator">•</span>
 							<span class="date"><i class="fa fa-clock-o" aria-hidden="true"></i>

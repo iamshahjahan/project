@@ -51,13 +51,24 @@ class Profile extends CI_Controller
 
 		}
 
+
 		$this->recent_activity->recent_act($this->session->userdata('logged_in')['user_id'],$limit,$offset);
 
+		// pagination view here.
 
+		$count_questions = count($this->Questions->get_by_key(0,0,0,$this->session->userdata('logged_in')['user_id'],'creation_time','q_id'));
+		$count_answers = count($this->Answers->get_by_key(0,0,0,$this->session->userdata('logged_in')['user_id'],'answer_time','a_id'));
+		// total results, will be used for pagination.
+		$total_results = $count_questions + $count_answers;
+
+		$this->load->view('pagination_view',
+			array(
+				'total_results' => $total_results,
+				'offset' => $offset,
+				'page_name' => 'profile')
+			);
 
 		$this->load->view('templates/footer');
-
-		
 		
 	}
 
@@ -102,6 +113,12 @@ class Profile extends CI_Controller
 	function get($user_id , $limit = 5 )
 
 	{
+
+		// load the header
+
+		$this->load->view('templates/header');
+
+
 	 	// let us get the profile of a person using his/her user_id
 
 		if ( isset($_GET['page']) && is_numeric($_GET['page']) && $_GET['page'] > 0)
@@ -121,17 +138,30 @@ class Profile extends CI_Controller
 		if($data!=0)
 		{
 	 		// let us show his public profile
-			$this->load->view('pubprofile_view',$data[0]);
+			$this->load->view('profile_view',$data[0]);
 	 		// now show the tags he follows/unfollows
 			$tags = $this->Follows->get_tags($user_id);
 			$this->load->view('tag_view',array('tags'=>$tags));
 		    // let us display his/her recent activities. 
-			$this->recent_activity->recent_act($user_id,$limit);
+			$this->recent_activity->recent_act($user_id,$limit,$offset);
+
+			$count_questions = count($this->Questions->get_by_key(0,0,0,$user_id,'creation_time','q_id'));
+			$count_answers = count($this->Answers->get_by_key(0,0,0,$user_id,'answer_time','a_id'));
+		// total results, will be used for pagination.
+			$total_results = $count_questions + $count_answers;
+
+			$this->load->view('pagination_view',
+				array(
+					'total_results' => $total_results,
+					'offset' => $offset,
+					'page_name' => 'profile/get/'.$user_id)
+				);
 		}
 		else
 		{
-			echo "User does not exist";
+			$this->load->view('verified_view',array('message' => 'The url doesn\'t exist. Please check the url'));
 		}
+		$this->load->view('templates/footer');
 	}
 }
 ?>

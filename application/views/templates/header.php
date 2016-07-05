@@ -17,30 +17,33 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">Project</a>
+        <a class="navbar-brand" href="<?php echo site_url();?>/home">Project</a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="<?php echo site_url();?>/home">Home <span class="sr-only">(current)</span></a></li>
+          <li class="<?php if($this->uri->segment(1)=="home"){echo "active";}?>"><a  href="<?php echo site_url();?>/home">Home <span class="sr-only">(current)</span></a></li>
 
           <?php 
           if ( is_logged_in() )
           {
             ?>
 
-            <li><a href="<?php echo site_url();?>/question">Add a question</a></li>
-            <li><a href="<?php echo site_url();?>/profile">Profile</a></li>
-            <li><a href="<?php echo site_url();?>/logout">Log Out</a></li>
+            <li class="<?php if($this->uri->segment(1)=="question"){echo "active";}?>">
+              <a  href="<?php echo site_url();?>/question">Add a question</a>
+
+            </li>
+            <li class="<?php if($this->uri->segment(1)=="profile"){echo "active";}?>"><a href="<?php echo site_url();?>/profile">Profile</a></li>
+            <li class="<?php if($this->uri->segment(1)=="logout"){echo "active";}?>"><a href="<?php echo site_url();?>/logout">Log Out</a></li>
 
             <?php
           }
           else
           {
             ?>
-            <li><a href="<?php echo site_url();?>/login">Sign In</a></li>
-            <li><a href="<?php echo site_url();?>/register">Sign Up</a></li>
+            <li class="<?php if($this->uri->segment(1)=="login"){echo "active";}?>" ><a href="<?php echo site_url();?>/login">Sign In</a></li>
+            <li class="<?php if($this->uri->segment(1)=="register"){echo "active";}?>"><a href="<?php echo site_url();?>/register">Sign Up</a></li>
 
             <?php
           }
