@@ -86,7 +86,6 @@
 
   <lib dir="../../../contrib/dataimporthandler/lib" regex=".*\.jar" />
    <lib dir="../../../dist/" regex="solr-dataimporthandler-\d.*\.jar" />
-
    <lib dir="../../../dist/" regex="mysql-connector-java-\d.*\.jar" />
   <!-- an exact 'path' can be used instead of a 'dir' to specify a 
        specific jar file.  This will cause a serious error to be logged 
