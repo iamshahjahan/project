@@ -7,6 +7,15 @@
 				// var_dump($finaldata);
 				foreach($finaldata as $row) {
 
+					$followed_tag_list = $this->Follows->get(0,$this->session->userdata('logged_in')['user_id']);
+
+					$followed_tag_array = array();
+					foreach ($followed_tag_list as $followed_tag) {
+						array_push($followed_tag_array, $followed_tag['tag_id']);
+					}
+
+					// var_dump($followed_tag_array);
+
 					$tag_ids = $this->Question_tags->get_tag_id($row['q_id']);
 
 					$tags = array();
@@ -19,6 +28,28 @@
 							array_push($tags, $this->Tags->get($tag_id[0]));
 						}
 					}
+					// now let us check whether current user follows this question or not?
+					// var_dump($followed_tag_array);
+					// var_dump($tags);
+
+					$is_follows = false;
+
+					foreach ($tags as $tag) {
+						if ( in_array($tag[0]['tag_id'], $followed_tag_array))
+						{
+							$is_follows = true;
+							break;
+						}
+					}
+
+					if ( (($is_interest)))
+					{
+						if ( !$is_follows)
+						{
+							break;
+						}
+					}
+
 
 
 					?>
