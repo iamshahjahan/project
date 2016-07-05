@@ -1,9 +1,21 @@
+
 <div class="container">
 	<h1 class="page-header"><?php echo $result[0]['title']; ?></h1
 		>
+		<div class="row">
+			<?php 
+				foreach ($tags as $tag) {
+			?>
+				<a href="<?php echo site_url();?>/tag/get/<?php echo $tag[0]['tag_id'];?>"><button class="btn btn-success"><?php echo $tag[0]['name'];?></button></a>
+			<?php
+				}
+			 ?>
+		</div>
+
 		<div class="content">
 			<p><?php echo $result[0]['description']; ?></p>
 		</div>
+			
 		<h5 class="date"><i class="fa fa-clock-o" aria-hidden="true"></i>
 			<?php 
 			echo $result[0]['creation_time'];

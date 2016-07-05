@@ -37,22 +37,18 @@ class Home extends CI_Controller {
 		 }
 
 
-
-		 $this->recent_activity->recent_act(0,5,$offset);
-
-
 		 $count_questions = count($this->Questions->get_by_key(0,0,0,0,'creation_time','q_id'));
 		 $count_answers = count($this->Answers->get_by_key(0,0,0,0,'answer_time','a_id'));
 		// total results, will be used for pagination.
 		 $total_results = $count_questions + $count_answers;
-
-		 $this->load->view('pagination_view',
-		 	array(
-		 		'total_results' => $total_results,
+		 // $data 
+		 $this->load->view("home_view",array('offset'=>$offset,'total_results' => $total_results,
 		 		'offset' => $offset,
-		 		'page_name' => 'home')
-		 	);
+		 		'page_name' => 'home'));
 
+
+
+		
 		 $this->load->view('templates/footer');//send sess data
 
 		}

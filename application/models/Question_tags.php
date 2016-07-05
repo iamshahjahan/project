@@ -25,6 +25,30 @@
 			}
 		}
 
+		function get_tag_id($q_id)
+		{
+			try
+			{
+				$query = "select tag_id from question_tags where question_tags.q_id = '".$q_id."'";
+
+				$sql = $this->conn_id->query($query);
+
+				if ( $row = $sql->fetchAll())
+				{
+					return $row;
+				}
+				else
+				{
+					// echo "I am here.";
+				}
+			}
+			catch(PDOException $e)
+			{
+				echo "Something went wrong.";
+			}
+		}
+
+
 
 		function get_questions_by_tag_id($tag_id)
 		{

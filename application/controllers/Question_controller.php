@@ -13,9 +13,12 @@
 			$this->load->library('form_validation');
 			$this->load->helper('url');
 			$this->load->helper('security');
+			$this->load->model('Question_tags');
 			$this->load->model('Questions');
 			$this->load->model('Answers');
 			$this->load->model('Users');
+			$this->load->model('Follows');
+			$this->load->model('Tags');
 
 			if ( !is_logged_in() )
 			{
@@ -63,12 +66,21 @@
 
 				// getting offsets for pagination.
 
+				$tag_ids = $this->Question_tags->get_tag_id($q_id);
 
+				$tags = array();
+				// var_dump($tag_ids);
 
+				foreach ($tag_ids as $tag_id) {
+					// var_dump($tag_id);
+					array_push($tags, $this->Tags->get($tag_id[0]));
+				}
 
+				// var_dump($tags);
 				$data  = array(
 					'result' => $result,
-					'answers' => $answers, 
+					'answers' => $answers,
+					'tags' => $tags,
 					'original_question_poster' => $original_question_poster,
 					'total_results' => $total_results,
 					'offset' => $offset,
@@ -83,6 +95,8 @@
 				{
 					$this->load->view('templates/header',$data);
 					$this->load->view('question_details',$data);
+					// $this->load->view('tag_details',array('result'=>$tags));
+
 					$this->load->view('templates/footer',$data);
 					// var_dump($result);
 				}

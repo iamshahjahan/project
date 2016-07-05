@@ -4,6 +4,7 @@
 
 	<?php
 		// let us check whether an entry related to current user and tag exists in the table or not?
+	// var_dump($result);
 	$tag_id = $result[0]['tag_id'];
 	
 	?>
@@ -17,10 +18,6 @@
 
 					<div class="col-md-6">
 						
-
-
-
-
 
 						<h4 class="card-title"><a href="<?php echo site_url(); ?>/tag/get/<?php echo $result[0]['tag_id'] ?>">
 							<?php echo $result[0]['name']; ?>
@@ -67,7 +64,6 @@
 		<div class="container">
 			<h1 class="page-header">Questions</h1>
 		<?php
-		var_dump($questions);
 		foreach ($questions as $question) {
 			?>
 

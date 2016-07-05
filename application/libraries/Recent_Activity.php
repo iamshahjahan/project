@@ -22,7 +22,7 @@ class Recent_Activity extends CI_Model{
 		$final_data = array();
 
 
-		
+
 
 
 		if($ques!=0)
@@ -128,6 +128,8 @@ class Recent_Activity extends CI_Model{
 							));
 
 				}
+
+				var_dump($finaldata);
 			}
 		}
 		?>
