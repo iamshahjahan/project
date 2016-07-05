@@ -11,8 +11,11 @@ class Recent_Activity extends CI_Model{
 		parent::__construct();
 		$this->load->model('Questions');
 		$this->load->model('Answers');		
+		$this->load->model('Tags');		
+		$this->load->model('Question_tags');		
+		$this->load->model('Follows');		
 	}
-	function recent_act($u_id=0,$limit=0,$offset=0) 
+	function recent_act($u_id=0,$limit=0,$offset=0,$is_interest = false) 
 	{
 		$ques = $this->Questions->get_by_key(0,$limit,$offset,$u_id,'creation_time','q_id');
 
@@ -121,15 +124,22 @@ class Recent_Activity extends CI_Model{
 						return $ts2 - $ts1;
 					});
 
-					// let us load the view with the data.
+					// let us get data for personal profile.''
+
+					// $tag_id = $this->Follows->get(0,$this->session->userdata('logged_in')['user_id']);
+				
+
 					$this->load->view(
 						'recent_act',array(
-							'finaldata'=>$final_data
+							'finaldata'=>$final_data,
+							'is_interest'=>$is_interest,
 							));
+
+
+
 
 				}
 
-				var_dump($finaldata);
 			}
 		}
 		?>

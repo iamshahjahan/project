@@ -13,20 +13,32 @@
  		function get($tag_id = 0,$user_id = 0)
  		{
 
+ 			if ( $user_id != 0 )
+ 			{
 
- 			$sql = $this->conn_id->query("select * from follows where tag_id = '".$tag_id."' and user_id = '".$user_id."' ");
- 			if($result = $sql -> fetchAll(PDO::FETCH_ASSOC))
- 				return $result;
+ 				$sql = $this->conn_id->query("select tag_id from follows where user_id = '".$user_id."' ");
+ 				if($result = $sql -> fetchAll(PDO::FETCH_ASSOC))
+ 					return $result;
+ 				else
+ 					return 0;
+ 			}
  			else
- 				return 0;
+ 			{
+
+ 				$sql = $this->conn_id->query("select * from follows where tag_id = '".$tag_id."' and user_id = '".$user_id."' ");
+ 				if($result = $sql -> fetchAll(PDO::FETCH_ASSOC))
+ 					return $result;
+ 				else
+ 					return 0;
+ 			}
  		}
 
  		function get_followers($tag_id)
  		{
  			$sql = "SELECT * FROM follows WHERE tag_id = ".$tag_id;  
-			$result = $this->conn_id->prepare($sql); 
+ 			$result = $this->conn_id->prepare($sql); 
  			$result->execute(); 
- 			  
+
  			return count($result->fetchAll()); 
  		}
 
