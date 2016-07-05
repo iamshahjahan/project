@@ -11,6 +11,8 @@ class Recent_Activity extends CI_Model{
 		parent::__construct();
 		$this->load->model('Questions');
 		$this->load->model('Answers');		
+		$this->load->model('Tags');		
+		$this->load->model('Question_tags');		
 	}
 	function recent_act($u_id=0,$limit=0,$offset=0) 
 	{
@@ -122,14 +124,33 @@ class Recent_Activity extends CI_Model{
 					});
 
 					// let us load the view with the data.
+
+				// 	foreach ($final_data as $final) {
+
+				// 		// echo "q_Id is".$final['q_id'];
+				// 		$tag_ids = $this->Question_tags->get_tag_id($final['q_id']);
+				// 		// var_dump($tag_ids);
+				// 		$tags = array();
+				// // var_dump($tag_ids);
+
+				// 		foreach ($tag_ids as $tag_id) {
+				// 	// var_dump($tag_id);
+				// 			array_push($tags, $this->Tags->get($tag_id[0]));
+				// 		}
+				// 		var_dump($tags);
+				// 		$final_data['tags'] = $tags;
+				// 	}
+				// 	// var_dump($final_data);
 					$this->load->view(
 						'recent_act',array(
 							'finaldata'=>$final_data
 							));
 
+
+
+
 				}
 
-				var_dump($finaldata);
 			}
 		}
 		?>

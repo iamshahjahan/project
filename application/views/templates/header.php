@@ -4,6 +4,7 @@
 	<title>Project</title>
   <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>/assets/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>/assets/font-awesome/css/font-awesome.css">
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>/assets/css/style.css">
 </head>
 <body>
 
@@ -51,13 +52,7 @@
           ?>
 
         </ul>
-        <form class="navbar-form navbar-left" role="search">
-          <div class="form-group">
-            <input type="text" class="form-control" placeholder="Search">
-          </div>
-          <button type="submit" class="btn btn-default">Submit</button>
-        </form>
-
+       
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
   </nav>

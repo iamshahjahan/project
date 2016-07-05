@@ -6,6 +6,21 @@
 				<?php
 				// var_dump($finaldata);
 				foreach($finaldata as $row) {
+
+					$tag_ids = $this->Question_tags->get_tag_id($row['q_id']);
+
+					$tags = array();
+				// var_dump($tag_ids);
+
+					if ( $tag_ids)
+					{
+						foreach ($tag_ids as $tag_id) {
+					// var_dump($tag_id);
+							array_push($tags, $this->Tags->get($tag_id[0]));
+						}
+					}
+
+
 					?>
 					<li class="well" style="display: list-item;">
 						<?php 
@@ -22,15 +37,25 @@
 									?>
 								</h4>
 							</div>
+							<div class="tags">
 
+								<?php 
+								foreach ($tags as $tag) {
+									?>
+									<a href="<?php echo site_url();?>/tag/get/<?php echo $tag[0]['tag_id'];?>"><button class="btn btn-primary"><?php echo $tag[0]['name'];?></button></a>
+									<?php
+								}
+								?>
+							</div>
+							<br>
 
 							<span class="name">
 								Asked by:
 
-								 <?php 
+								<?php 
 
-								 if ( $row['q_u_id'] != $this->session->userdata('logged_in')['user_id'])
-								  echo "<a href=".site_url().'/profile/get/'.$row['q_u_id'].">".$row['qauthor']."</a></br>";
+								if ( $row['q_u_id'] != $this->session->userdata('logged_in')['user_id'])
+									echo "<a href=".site_url().'/profile/get/'.$row['q_u_id'].">".$row['qauthor']."</a></br>";
 								else
 								{
 									echo "You";
@@ -55,10 +80,10 @@
 								<span class="name">
 									Answered by:
 
-									 <?php 
+									<?php 
 
-									 if ( $row['user_id'] != $this->session->userdata('logged_in')['user_id'])
-									  echo "<a href=".site_url().'/profile/get/'.$row['user_id'].">".$row['aauthor']."</a></br>";
+									if ( $row['user_id'] != $this->session->userdata('logged_in')['user_id'])
+										echo "<a href=".site_url().'/profile/get/'.$row['user_id'].">".$row['aauthor']."</a></br>";
 									else
 									{
 										echo "You";
@@ -90,14 +115,25 @@
 								</h4>
 							</div>
 
+							<div class="tags">
+
+								<?php 
+								foreach ($tags as $tag) {
+									?>
+									<a href="<?php echo site_url();?>/tag/get/<?php echo $tag[0]['tag_id'];?>"><button class="btn btn-primary"><?php echo $tag[0]['name'];?></button></a>
+									<?php
+								}
+								?>
+							</div>
+							<br>
 
 							<span class="name">
 								Asked by:
 
-								 <?php 
+								<?php 
 
-								 if ( $row['user_id'] != $this->session->userdata('logged_in')['user_id'])
-								  echo "<a href=".site_url().'/profile/get/'.$row['user_id'].">".$row['aauthor']."</a></br>";
+								if ( $row['user_id'] != $this->session->userdata('logged_in')['user_id'])
+									echo "<a href=".site_url().'/profile/get/'.$row['user_id'].">".$row['aauthor']."</a></br>";
 								else
 								{
 									echo "You";
