@@ -96,6 +96,10 @@ class Verifyquestion extends CI_Controller {
 								{
 									$tag_id = $request[1];
 
+									$search_Control = new search_Controller();
+									if ( $search_Control->taginsert($tag_id,$tag) )
+										$response['solr_tag'] = "Inserted successfully solr.";
+
 								}
 							}
 							if($this->Question_tags->insert($q_id, $tag_id))

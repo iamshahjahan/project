@@ -10,8 +10,12 @@
 					$followed_tag_list = $this->Follows->get(0,$this->session->userdata('logged_in')['user_id']);
 
 					$followed_tag_array = array();
-					foreach ($followed_tag_list as $followed_tag) {
-						array_push($followed_tag_array, $followed_tag['tag_id']);
+					if ( $followed_tag_array )
+					{
+						
+						foreach ($followed_tag_list as $followed_tag) {
+							array_push($followed_tag_array, $followed_tag['tag_id']);
+						}
 					}
 
 					// var_dump($followed_tag_array);

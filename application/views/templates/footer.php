@@ -8,6 +8,8 @@
 				</div>	
 				
 				<script type="text/javascript" src="<?php echo base_url(); ?>/assets/js/jquery.js"></script>
+				<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+				<script type="text/javascript" src="<?php echo base_url();?>assets/js/search_response.js"></script>
 				<script type="text/javascript" src="<?php echo base_url();?>assets/js/add_answer.js"></script>
 				<script type="text/javascript" src="<?php echo base_url();?>assets/js/question.js"></script>
 				<script type="text/javascript" src="<?php echo base_url(); ?>/assets/bootstrap/js/bootstrap.min.js"></script>

@@ -16,6 +16,4 @@
 			return $this->load->database('pdo', true)->conn_id;			
 		}	
 	}
-	
-
-	?>
+?>

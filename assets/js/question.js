@@ -91,7 +91,7 @@ $(document).ready(function () {
                    {
                     $('#question_form_error').html(
                         '<div class="alert alert-success col-sm-8">Successfully inserted.</div><br>');  
-                    location.reload();
+                    // location.reload();
 
                 }
                 else 

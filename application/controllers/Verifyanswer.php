@@ -17,7 +17,10 @@
 			$this->load->helper('url');
 
 		}
+		
+// need to add differnt functions.
 		function index()
+
 		{
 			// var_dump($_POST);
 			if ( isset($_POST['user_id']) && isset($_POST['q_id']) && isset($_POST['answer']))
@@ -53,6 +56,7 @@
 
 					// making title and link to be send to the user.
 						$title = $queston_details[0]['title'];
+						
 						$link = site_url().'/question/get/'.$_POST['q_id'];
 
 						$message = "A new answer has been added to the question: ".$title.". Click here to visit: ".$link;
@@ -120,6 +124,4 @@
 			echo json_encode($response);
 		}
 	}
-
-
 	?>

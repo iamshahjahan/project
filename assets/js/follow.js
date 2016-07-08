@@ -30,6 +30,7 @@ $('#follow').click(
 
 $('#unfollow').click(
 	function (e) {
+		console.log("Un follow is clicked.");
 		e.preventDefault();
 		$.ajax({
 

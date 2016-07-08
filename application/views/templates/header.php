@@ -5,6 +5,8 @@
   <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>/assets/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>/assets/font-awesome/css/font-awesome.css">
   <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>/assets/css/style.css">
+  <link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+  
 </head>
 <body>
 
@@ -24,12 +26,12 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li class="<?php if($this->uri->segment(1)=="home"){echo "active";}?>"><a  href="<?php echo site_url();?>/home">Home <span class="sr-only">(current)</span></a></li>
 
           <?php 
           if ( is_logged_in() )
           {
             ?>
+            <li class="<?php if($this->uri->segment(1)=="home"){echo "active";}?>"><a  href="<?php echo site_url();?>/home">Home <span class="sr-only">(current)</span></a></li>
 
             <li class="<?php if($this->uri->segment(1)=="question"){echo "active";}?>">
               <a  href="<?php echo site_url();?>/question">Add a question</a>
@@ -52,7 +54,15 @@
           ?>
 
         </ul>
-       
+        <form id = "search_form" action="<?php echo site_url(); ?>/search_controller/quessearch" class="navbar-form navbar-right"  role="search">
+          <div class="form-group">
+            <input type="text" id="search_user" class="form-control" placeholder="Search">
+          </div>
+        </form>
+        <!-- <div id="search_list" class="pull-right"></div> -->
+
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
   </nav>
+  <!-- <div class="navbar-form navbar-right" id="search_list"> -->
+

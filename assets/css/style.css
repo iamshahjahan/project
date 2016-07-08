@@ -15,3 +15,12 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+#search_list 
+{
+	position: absolute;
+	margin-top: 50px;
+	right: 0;
+	z-index: 99;
+	font-size: 20px;
+}

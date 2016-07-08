@@ -19,6 +19,7 @@
 				$response['success'] = 0;
 
 				$data = array($_POST['tag_id'],$_POST['user_id']);
+				// var_dump($data);
 
 				if ( isset($_POST['unfollow']))
 				{

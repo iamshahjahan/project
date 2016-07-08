@@ -13,7 +13,7 @@
  		function get($tag_id = 0,$user_id = 0)
  		{
 
- 			if ( $user_id != 0 )
+ 			if ( $tag_id == 0 && $user_id != 0 )
  			{
 
  				$sql = $this->conn_id->query("select tag_id from follows where user_id = '".$user_id."' ");
