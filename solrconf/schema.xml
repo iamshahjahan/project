@@ -178,10 +178,16 @@
 
    <field name="payloads" type="payloads" indexed="true" stored="true"/>
 
-<field name="q_title" type="string" indexed="true" stored="true"/>
-<field name="q_desc" type="string" indexed="true" stored="true"/>
-<!--field name="tag_id" type="string" indexed="true" stored="true"/-->
-<field name="tagname" type="string" indexed="true" stored="true" multiValued="true"/>
+
+  <!--field name="tag_id" type="string" indexed="true" stored="true" multiValued="false" /-->
+  <field name="tagname" type="string" indexed="true" stored="true"/>
+   
+
+   <!--field name="firstname" type="string" indexed="true" stored="true"/>
+ <field name="lastname" type="string" indexed="true" stored="true"/>
+ <field name="town" type="string" indexed="true" stored="true"/>
+ <field name="university" type="string" indexed="true" stored="true"/-->
+
 
    <!--
      Some fields such as popularity and manu_exact could be modified to

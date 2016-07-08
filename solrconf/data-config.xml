@@ -1,13 +1,9 @@
 <dataConfig> 
  <dataSource type="JdbcDataSource" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/project" user="root" password="khan" batchSize="1" />  
- <document name="ques">   
-  <entity name="ques" query="select questions.q_id,title,description, group_concat(tags.name) as tname from questions inner join tags inner join question_tags on question_tags.q_id=questions.q_id and tags.tag_id=question_tags.tag_id group by questions.q_id" transformer="RegexTransformer">    
-   <field column="q_id" name="id"/>
-   <field column="title" name="q_title"/>
-   <field column="description" name="q_desc"/>
-   <!--field column="tag_id" name="tag_id"/--> 
-   <field column="tname" name="tagname" splitBy = ","/>   
-   <!--field column="name" name="tagname"/-->    
+ <document name="tags">   
+  <entity name="tags" query="SELECT * FROM tags" deltaImportQuery="select * from tags where tag_id='${dih.delta.id}'" deltaQuery="select tag_id from tags where last_modified &gt; '${dih.last_index_time}'">    
+   <field column="tag_id" name="id"/>    
+   <field column="name" name="tagname"/>    
   </entity>  
  </document>
 </dataConfig>
