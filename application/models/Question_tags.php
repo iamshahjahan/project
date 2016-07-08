@@ -72,5 +72,45 @@
 				echo "Something went wrong.";
 			}
 		}
+
+		/*
+		*	get_qid_by_tagid_userid
+		*   @args: $user_id -> single user_id
+		*          $tag_id -> array of tagids
+		*   @returns  
+		*/
+		function get_myinterest($user_id,$tag_id)
+		{
+			try
+			{
+				if(!is_numeric($user_id) || !is_array($tag_id)){
+					throw new Exception("Invalid arguments");
+				}
+
+				$query = "select q_id from follows join question_tags on follows.tag_id = question_tags.tag_id where follows.user_id = '".$user_id."'and question_tags.tag_id in (";
+				$x = 0;
+				for (; $x < count($tag_id) - 1; $x++) {
+					$query = $query."'".$tag_id[$x]."',";
+				}
+				$query = $query."'".$tag_id[$x]."')";
+
+				echo $query;
+
+				$sql = $this->conn_id->query($query);
+
+				if ( $row = $sql->fetchAll())
+				{
+					return $row;
+				}
+				else
+				{
+					throw new Exception("Error in sql query");
+				}
+			}
+			catch(PDOException $e)
+			{
+				echo $e->getMessage();
+			}
+		}
 	}
 	?>

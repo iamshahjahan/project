@@ -38,6 +38,7 @@ $('#search_user').on('keyup',
          		success:function(data)
          		{
                     var data_array = [];
+                        console.log(data);
                     // if (data.success) {
                         $.each(data, function(i, item) 
                         {
@@ -60,7 +61,6 @@ $('#search_user').on('keyup',
                     // }
                     // else
                     // {
-                    //     console.log(data);
                     //      $('#search_list').text("No results found.");   
                     // }
 
