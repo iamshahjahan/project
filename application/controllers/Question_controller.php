@@ -66,7 +66,7 @@
 
 				// getting offsets for pagination.
 
-				$tag_ids = $this->Question_tags->get_tag_id($q_id);
+				$tag_ids = $this->Question_tags->get_tag_id($q_id);// if no tags error
 
 				$tags = array();
 				// var_dump($tag_ids);

@@ -79,22 +79,17 @@
 		*          $tag_id -> array of tagids
 		*   @returns  
 		*/
-		function get_myinterest($user_id,$tag_id)
+		function get_myinterest($user_id)
 		{
 			try
 			{
-				if(!is_numeric($user_id) || !is_array($tag_id)){
+				if(!is_numeric($user_id) ){
 					throw new Exception("Invalid arguments");
 				}
 
-				$query = "select q_id from follows join question_tags on follows.tag_id = question_tags.tag_id where follows.user_id = '".$user_id."'and question_tags.tag_id in (";
-				$x = 0;
-				for (; $x < count($tag_id) - 1; $x++) {
-					$query = $query."'".$tag_id[$x]."',";
-				}
-				$query = $query."'".$tag_id[$x]."')";
+				$query = "select DISTINCT q_id from follows join question_tags on follows.tag_id = question_tags.tag_id where follows.user_id = '".$user_id."'";
 
-				echo $query;
+				//echo $query;
 
 				$sql = $this->conn_id->query($query);
 
