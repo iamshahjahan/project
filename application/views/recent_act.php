@@ -32,29 +32,6 @@
 							array_push($tags, $this->Tags->get($tag_id[0]));
 						}
 					}
-					// now let us check whether current user follows this question or not?
-					// var_dump($followed_tag_array);
-					// var_dump($tags);
-
-					$is_follows = false;
-
-					foreach ($tags as $tag) {
-						if ( in_array($tag[0]['tag_id'], $followed_tag_array))
-						{
-							$is_follows = true;
-							break;
-						}
-					}
-
-					if ( (($is_interest)))
-					{
-						if ( !$is_follows)
-						{
-							break;
-						}
-					}
-
-
 
 					?>
 					<li class="well" style="display: list-item;">

@@ -18,8 +18,22 @@ class Recent_Activity extends CI_Model{
 	function recent_act($u_id=0,$limit=0,$offset=0,$is_interest = false) 
 	{
 		$qids = 0;
-		if($is_interest==true && $u_id!=0){
-			$qids = $this->Question_tags->get_myinterest($u_id);
+
+
+		if($is_interest==1 ){
+			$qids = $this->Question_tags->get_myinterest($this->session->userdata("logged_in")['user_id']);
+
+			// $x = 0;
+			// var_dump($qids);
+			// 	for (; $x < count($qids) - 1; $x++) {
+			// 		echo $qids[$x]['q_id'];
+			// 	}
+
+			// foreach ($qids as $qid) {
+			// 	echo $qid[1];
+			// }
+			// var_dump($qids);
+			// echo "I am in isinterest.";
 		}
 	
 			$ques = $this->Questions->get_by_key($qids,$limit,$offset,$u_id,'creation_time','q_id');
@@ -137,7 +151,6 @@ class Recent_Activity extends CI_Model{
 					$this->load->view(
 						'recent_act',array(
 							'finaldata'=>$final_data,
-							'is_interest'=>$is_interest,
 							));
 
 				}

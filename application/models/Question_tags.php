@@ -92,7 +92,7 @@
 
 				$sql = $this->conn_id->query($query);
 
-				if ( $row = $sql->fetchAll())
+				if ( $row = $sql->fetchAll(PDO::FETCH_NUM))
 				{
 					return $row;
 				}

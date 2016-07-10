@@ -72,9 +72,12 @@
 				$tags = array();
 				// var_dump($tag_ids);
 
-				foreach ($tag_ids as $tag_id) {
+				if ( $tag_ids)
+				{
+					foreach ($tag_ids as $tag_id) {
 					// var_dump($tag_id);
-					array_push($tags, $this->Tags->get($tag_id[0]));
+						array_push($tags, $this->Tags->get($tag_id[0]));
+					}
 				}
 
 				// var_dump($tags);

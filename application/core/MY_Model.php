@@ -97,9 +97,9 @@
 
 				$x = 0;
 				for (; $x < count($key) - 1; $x++) {
-					$sql_query = $sql_query."'".$key[$x]."',";
+					$sql_query = $sql_query."'".$key[$x][0]."',";
 				}
-				$sql_query = $sql_query."'".$key[$x]."')";	
+				$sql_query = $sql_query."'".$key[$x][0]."')";	
 				
 			}
 
