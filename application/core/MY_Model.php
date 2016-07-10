@@ -79,6 +79,7 @@
 			$sql_query = "select * from ".$this->table_name." ";
 			if(is_array($key) || $u_id!=0)
 			{
+				if ( sizeof($key) > 0)
 				$sql_query = $sql_query ." where ";
 			}
 
@@ -89,17 +90,21 @@
 
 			if(is_array($key) && $u_id!=0)
 			{
-				$sql_query = $sql_query ." and ";
+				if ( sizeof($key) > 0)
+					$sql_query = $sql_query ." and ";
 			}
 			if(is_array($key))
 			{	
-				$sql_query = $sql_query." ".$key_id." in (";
+				if ( sizeof($key) > 0)
+				{
+					$sql_query = $sql_query." ".$key_id." in (";
 
-				$x = 0;
-				for (; $x < count($key) - 1; $x++) {
-					$sql_query = $sql_query."'".$key[$x][0]."',";
-				}
-				$sql_query = $sql_query."'".$key[$x][0]."')";	
+					$x = 0;
+					for (; $x < count($key) - 1; $x++) {
+						$sql_query = $sql_query."'".$key[$x][0]."',";
+					}
+					$sql_query = $sql_query."'".$key[$x][0]."')";
+				}	
 				
 			}
 

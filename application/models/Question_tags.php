@@ -98,7 +98,8 @@
 				}
 				else
 				{
-					throw new Exception("Error in sql query");
+					// throw new Exception("Error in sql query");
+					return array();
 				}
 			}
 			catch(PDOException $e)
