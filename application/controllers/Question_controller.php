@@ -65,6 +65,7 @@
 				$original_question_poster = $this->Users->get($result[0]['user_id']);
 
 				// getting offsets for pagination.
+				$tag_ids = array();
 
 				$tag_ids = $this->Question_tags->get_tag_id($q_id);
 

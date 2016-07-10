@@ -9,7 +9,6 @@ class Search_controller extends  CI_Controller {
 		$this->load->model('tags');
 		$this->load->model('answers');
 		$this->load->model('questions');
-		//$this->load->model('pagingclass');
 	}
 
 	function index() {
@@ -157,7 +156,7 @@ function quessearch(){
 		$ques = $_POST['search'];      
 //	echo $tag_name;
 		$curl = curl_init();
-		curl_setopt($curl, CURLOPT_URL, "http://localhost:8983/solr/collection1/select?q=tagname%3A*k*&wt=json&indent=true");
+		curl_setopt($curl, CURLOPT_URL, "http://localhost:8983/solr/collection1/select?q=tagname%3A*".$ques."*&wt=json&indent=true");
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 			curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type: application/json')); //setting content type header
 //curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);

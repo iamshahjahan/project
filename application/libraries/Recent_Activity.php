@@ -135,9 +135,6 @@ class Recent_Activity extends CI_Model{
 							'is_interest'=>$is_interest,
 							));
 
-
-
-
 				}
 
 			}

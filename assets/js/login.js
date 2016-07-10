@@ -1,7 +1,5 @@
 $(document).ready(function () {
     highlight_errors_validate();
-
-    
     // Setup form validation on the #register-form element
     $("#forgotpassword_form").validate({
         // Specify the validation rules

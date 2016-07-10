@@ -7,7 +7,8 @@
 		private $table_name;
 		private $primary_key;
 		protected $conn_id;
-		function __construct($table_name,$primary_key ="")
+
+		public function __construct($table_name,$primary_key ="")
 		{
 			parent::__construct();
 			$this->table_name = $table_name;
@@ -19,7 +20,7 @@
 		}
 
 
-		function get($id = 0,$limit=0)//specify limit if wnat limited results
+		public function get($id = 0,$limit=0)
 		{
 			try 
 			{
@@ -73,7 +74,7 @@
 		*                       specify field in order_by else '-1',
 		*                       specify $key_id field in which ids are to be searched 
 		*/
-		function get_by_key($key=0,$limit=0,$offset=0,$u_id=0,$order_by='-1',$key_id)
+		public function get_by_key($key=0,$limit=0,$offset=0,$u_id=0,$order_by='-1',$key_id)
 		{
 			$sql_query = "select * from ".$this->table_name." ";
 			if(is_array($key) || $u_id!=0)

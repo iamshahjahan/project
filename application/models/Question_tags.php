@@ -21,7 +21,6 @@
 			}
 			catch (PDOException $e)
 			{
-				// Todo
 			}
 		}
 

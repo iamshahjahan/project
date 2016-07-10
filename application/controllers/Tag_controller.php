@@ -14,6 +14,10 @@
 			$this->load->model('Users');
 			$this->load->library("session");
 			$this->load->helper("url");
+			if ( !is_logged_in() )
+			{
+				redirect('login',TRUE);
+			}
 
 		}
 
@@ -33,10 +37,10 @@
 
 
 				$data  = array(
-						'result' => $result,
-						'questions' => $questions,
-						'count_followers' => $count_followers,
-						 );
+					'result' => $result,
+					'questions' => $questions,
+					'count_followers' => $count_followers,
+					);
 				// $data = $result;
 				if ( !$result )
 				{
