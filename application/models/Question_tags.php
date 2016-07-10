@@ -71,5 +71,40 @@
 				echo "Something went wrong.";
 			}
 		}
+
+		/*
+		*	get_qid_by_tagid_userid
+		*   @args: $user_id -> single user_id
+		*          $tag_id -> array of tagids
+		*   @returns  
+		*/
+		function get_myinterest($user_id)
+		{
+			try
+			{
+				if(!is_numeric($user_id) ){
+					throw new Exception("Invalid arguments");
+				}
+
+				$query = "select DISTINCT q_id from follows join question_tags on follows.tag_id = question_tags.tag_id where follows.user_id = '".$user_id."'";
+
+				//echo $query;
+
+				$sql = $this->conn_id->query($query);
+
+				if ( $row = $sql->fetchAll())
+				{
+					return $row;
+				}
+				else
+				{
+					throw new Exception("Error in sql query");
+				}
+			}
+			catch(PDOException $e)
+			{
+				echo $e->getMessage();
+			}
+		}
 	}
 	?>

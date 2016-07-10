@@ -17,11 +17,16 @@ class Recent_Activity extends CI_Model{
 	}
 	function recent_act($u_id=0,$limit=0,$offset=0,$is_interest = false) 
 	{
-		$ques = $this->Questions->get_by_key(0,$limit,$offset,$u_id,'creation_time','q_id');
+		$qids = 0;
+		if($is_interest==true && $u_id!=0){
+			$qids = $this->Question_tags->get_myinterest($u_id);
+		}
+	
+			$ques = $this->Questions->get_by_key($qids,$limit,$offset,$u_id,'creation_time','q_id');
 
 			// var_dump($ques);
 			// it means we have some questions.
-		$ans = $this->Answers->get_by_key(0,$limit,$offset,$u_id,'answer_time','a_id');
+			$ans = $this->Answers->get_by_key($qids,$limit,$offset,$u_id,'answer_time','a_id');
 		$final_data = array();
 
 
@@ -127,7 +132,7 @@ class Recent_Activity extends CI_Model{
 					// let us get data for personal profile.''
 
 					// $tag_id = $this->Follows->get(0,$this->session->userdata('logged_in')['user_id']);
-				
+
 
 					$this->load->view(
 						'recent_act',array(
